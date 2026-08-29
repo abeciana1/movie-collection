@@ -11,3 +11,34 @@ generator client {
 datasource db {
   provider = "sqlite"
 }
+
+model Movie {
+  id          String   @id @default(uuid())
+  tmdbId      Int      @unique
+  title       String
+  posterPath  String?
+  releaseYear Int?
+  createdAt   DateTime @default(now())
+  watchlistItems WatchlistItem[]
+}
+
+model Watchlist {
+  id         String   @id @default(uuid())
+  name       String
+  description  String?
+  slug       String   @unique
+  visibility String   @default("PRIVATE") // PRIVATE | PUBLIC
+  createdAt  DateTime @default(now())
+  watchlistItems WatchlistItem[]
+}
+
+model WatchlistItem {
+  watchlistId  String
+  movieId    String
+  addedAt DateTime @default(now())
+
+  watchlist  Watchlist  @relation(fields: [watchlistId], references: [id])
+  movie Movie @relation(fields: [movieId], references: [id])
+
+  @@id([watchlistId, movieId])
+}
