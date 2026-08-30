@@ -16,12 +16,14 @@
     "@prisma/adapter-better-sqlite3": "^7.10.0",
     "@prisma/adapter-libsql": "^7.10.0",
     "@prisma/client": "^7.10.0",
+    "better-auth": "^1.7.2",
     "dotenv": "^17.4.2",
     "next": "16.3.3",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
   "devDependencies": {
+    "@better-auth/cli": "^1.4.21",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
