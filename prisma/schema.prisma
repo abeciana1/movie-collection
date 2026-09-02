@@ -21,12 +21,14 @@ model Movie {
   createdAt   DateTime @default(now())
   watchlistItems WatchlistItem[]
   mediaItems MediaItemMovie[]
+  notes DiaryEntry[]
 }
 
 model Watchlist {
   id         String   @id @default(uuid())
   name       String
-  description  String?
+  description     String?  // Tiptap JSON, stringified
+  descriptionText String?  // plain-text mirror, for search
   slug       String   @unique
   visibility String   @default("PRIVATE") // PRIVATE | PUBLIC
   createdAt  DateTime @default(now())
@@ -37,7 +39,8 @@ model WatchlistItem {
   watchlistId  String
   movieId    String
   addedAt DateTime @default(now())
-  description String? @default("")
+  description     String?  // Tiptap JSON, stringified
+  descriptionText String?  // plain-text mirror, for search
 
   watchlist  Watchlist  @relation(fields: [watchlistId], references: [id])
   movie Movie @relation(fields: [movieId], references: [id])
@@ -64,4 +67,17 @@ model MediaItemMovie {
   movie     Movie     @relation(fields: [movieId], references: [id])
 
   @@id([mediaItemId, movieId])
+}
+
+model DiaryEntry {
+  id          String   @id @default(uuid())
+  movieId     String
+  watchedDate DateTime
+  rating      Int?
+  rewatch     Boolean  @default(false)
+  notes       String?  // Tiptap JSON, stringified
+  notesText   String?  // plain-text mirror, for search
+  createdAt   DateTime @default(now())
+
+  movie Movie @relation(fields: [movieId], references: [id])
 }
