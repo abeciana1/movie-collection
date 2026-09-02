@@ -20,6 +20,7 @@ model Movie {
   releaseYear Int?
   createdAt   DateTime @default(now())
   watchlistItems WatchlistItem[]
+  mediaItems MediaItemMovie[]
 }
 
 model Watchlist {
@@ -42,4 +43,25 @@ model WatchlistItem {
   movie Movie @relation(fields: [movieId], references: [id])
 
   @@id([watchlistId, movieId])
+}
+
+model MediaItem {
+  id            String   @id @default(uuid())
+  movieId       String
+  format        String   // DVD | BLU_RAY | 4K | VHS
+  upc           String   @unique
+  shelfLocation String?
+  acquiredDate  DateTime @default(now())
+
+  movies MediaItemMovie[]
+}
+
+model MediaItemMovie {
+  mediaItemId String
+  movieId     String
+
+  mediaItem MediaItem @relation(fields: [mediaItemId], references: [id])
+  movie     Movie     @relation(fields: [movieId], references: [id])
+
+  @@id([mediaItemId, movieId])
 }
