@@ -11,3 +11,81 @@ generator client {
 datasource db {
   provider = "sqlite"
 }
+
+model Movie {
+  id          String   @id @default(uuid())
+  tmdbId      Int      @unique
+  title       String
+  posterPath  String?
+  releaseYear Int?
+  createdAt   DateTime @default(now())
+  watchlistItems WatchlistItem[]
+  mediaItems MediaItemMovie[]
+  notes DiaryEntry[]
+}
+
+model Watchlist {
+  id         String   @id @default(uuid())
+  name       String
+  description     String?  // Tiptap JSON, stringified
+  descriptionText String?  // plain-text mirror, for search
+  slug       String   @unique
+  visibility String   @default("PRIVATE") // PRIVATE | PUBLIC
+  createdAt  DateTime @default(now())
+  watchlistItems WatchlistItem[]
+}
+
+model WatchlistItem {
+  watchlistId  String
+  movieId    String
+  addedAt DateTime @default(now())
+  description     String?  // Tiptap JSON, stringified
+  descriptionText String?  // plain-text mirror, for search
+
+  watchlist  Watchlist  @relation(fields: [watchlistId], references: [id])
+  movie Movie @relation(fields: [movieId], references: [id])
+
+  @@id([watchlistId, movieId])
+}
+
+model MediaItem {
+  id            String   @id @default(uuid())
+  movieId       String
+  format        String   // DVD | BLU_RAY | 4K | VHS
+  upc           String   @unique
+  shelfLocation String?
+  acquiredDate  DateTime @default(now())
+
+  movies MediaItemMovie[]
+}
+
+model MediaItemMovie {
+  mediaItemId String
+  movieId     String
+
+  mediaItem MediaItem @relation(fields: [mediaItemId], references: [id])
+  movie     Movie     @relation(fields: [movieId], references: [id])
+
+  @@id([mediaItemId, movieId])
+}
+
+model DiaryEntry {
+  id          String   @id @default(uuid())
+  movieId     String
+  watchedDate DateTime
+  rating      Int // 0-10, half-star increments (divide by 2 for display)
+  rewatch     Boolean  @default(false)
+  notes       String?  // Tiptap JSON, stringified
+  notesText   String?  // plain-text mirror, for search
+  createdAt   DateTime @default(now())
+
+  movie Movie @relation(fields: [movieId], references: [id])
+}
+
+model Subscriber {
+  id               String    @id @default(uuid())
+  email            String    @unique
+  subscribedAt     DateTime  @default(now())
+  unsubscribedAt   DateTime?
+  unsubscribeToken String    @unique
+}
