@@ -73,11 +73,19 @@ model DiaryEntry {
   id          String   @id @default(uuid())
   movieId     String
   watchedDate DateTime
-  rating      Int?
+  rating      Int // 0-10, half-star increments (divide by 2 for display)
   rewatch     Boolean  @default(false)
   notes       String?  // Tiptap JSON, stringified
   notesText   String?  // plain-text mirror, for search
   createdAt   DateTime @default(now())
 
   movie Movie @relation(fields: [movieId], references: [id])
+}
+
+model Subscriber {
+  id               String    @id @default(uuid())
+  email            String    @unique
+  subscribedAt     DateTime  @default(now())
+  unsubscribedAt   DateTime?
+  unsubscribeToken String    @unique
 }
