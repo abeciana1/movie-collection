@@ -36,6 +36,7 @@ model WatchlistItem {
   watchlistId  String
   movieId    String
   addedAt DateTime @default(now())
+  description String? @default("")
 
   watchlist  Watchlist  @relation(fields: [watchlistId], references: [id])
   movie Movie @relation(fields: [movieId], references: [id])
