@@ -14,9 +14,6 @@ importers:
       '@libsql/client':
         specifier: ^0.17.4
         version: 0.17.4
-      '@prisma/adapter-better-sqlite3':
-        specifier: ^7.10.0
-        version: 7.10.0
       '@prisma/adapter-libsql':
         specifier: ^7.10.0
         version: 7.10.0
@@ -44,6 +41,9 @@ importers:
       next:
         specifier: 16.3.3
         version: 16.3.3(@babel/core@7.29.7)(@types/node@20.19.43)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      prettier:
+        specifier: ^3.9.6
+        version: 3.9.6
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -875,9 +875,6 @@ packages:
   '@opentelemetry/semantic-conventions@1.43.0':
     resolution: {integrity: sha512-eSYWTm620tTk45EKSedaUL8MFYI8hW164hIXsgIHyxu3VobUB3fFCu5t0hQby6OoWRPsG1KkKUG2M5UadiLiVg==}
     engines: {node: '>=14'}
-
-  '@prisma/adapter-better-sqlite3@7.10.0':
-    resolution: {integrity: sha512-lqEUP9aTaJ0aDbIIrr/jmCqmkmmoAB5i7xeK6LLOTIxrOeK9KDLJDjtlqKKxAQulSwk5fNSshor8Az1QNZdI5Q==}
 
   '@prisma/adapter-libsql@7.10.0':
     resolution: {integrity: sha512-ANjUjJ/TrDQhR8jFU8HvYWRdwP17Lox1WL81zZvHcPVeFehZfNomAsPMNY24EBTLLZp0Xw4Na5Zf1S+EuKMKxw==}
@@ -5061,11 +5058,6 @@ snapshots:
   '@nolyfill/is-core-module@1.0.39': {}
 
   '@opentelemetry/semantic-conventions@1.43.0': {}
-
-  '@prisma/adapter-better-sqlite3@7.10.0':
-    dependencies:
-      '@prisma/driver-adapter-utils': 7.10.0
-      better-sqlite3: 12.11.1
 
   '@prisma/adapter-libsql@7.10.0':
     dependencies:
