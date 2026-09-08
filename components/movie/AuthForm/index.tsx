@@ -59,7 +59,7 @@ const AuthForm = () => {
         <CardTitle>Sign into your account</CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
-        <Button variant="outline" size="lg">
+        <Button variant="outline" size="lg" onClick={handleGoogle}>
           <Google /> Continue with Google
         </Button>
       </CardContent>
