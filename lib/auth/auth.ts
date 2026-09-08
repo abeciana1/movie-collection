@@ -4,5 +4,6 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, { provider: "sqlite" }),
-  baseURL: "https://localhost:3000/",
+  appName: "Movie Collection",
+  baseURL: process.env.NEXT_PUBLIC_BETTER_AUTH_BASE_URL,
 });
