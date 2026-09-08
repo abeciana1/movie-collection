@@ -1,7 +1,7 @@
-import { cn } from "@/lib/utils"
-import { CardProps } from "@/types/ui/card"
-import { GradientOptions } from "@/types/general"
-import Gradient from "@/components/movie/Gradient"
+import { cn } from "@/lib/utils";
+import { CardProps } from "@/types/ui/card";
+import { GradientOptions } from "@/types/general";
+import Gradient from "@/components/movie/Gradient";
 
 function Card({
   className,
@@ -13,6 +13,9 @@ function Card({
 }: CardProps) {
   return (
     <div className="relative flex mx-auto">
+      {enableGradient && (
+        <Gradient tone={variant as GradientOptions} xFlip={gradientXFlip} yFlip={gradientYFlip} />
+      )}
       <div
         data-slot="card"
         className={cn(
@@ -21,13 +24,6 @@ function Card({
         )}
         {...props}
       />
-      {enableGradient && (
-        <div className="z-0 absolute rounded-full right-0 md:-right-40 h-56 sm:h-40 md:h-80 w-80 md:w-200 blur-3xl sm:opacity-70 overflow-hidden">
-          <Gradient
-            tone={variant as GradientOptions}
-          />
-        </div>
-      )}
     </div>
   );
 }
@@ -38,7 +34,7 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="card-header"
       className={cn(
         "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6",
-        className
+        className,
       )}
       {...props}
     />
@@ -71,7 +67,7 @@ function CardAction({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="card-action"
       className={cn(
         "col-start-2 row-span-2 row-start-1 self-start justify-self-end",
-        className
+        className,
       )}
       {...props}
     />
