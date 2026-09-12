@@ -7,7 +7,7 @@ const isHttps = process.env.BETTER_AUTH_BASE_URL?.startsWith("https://");
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, { provider: "sqlite" }),
-  appName: "Rewatchr",
+  appName: "Reelhouse",
   baseURL: process.env.BETTER_AUTH_URL,
   secret: process.env.BETTER_AUTH_SECRET,
   logger: {
