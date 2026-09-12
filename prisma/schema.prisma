@@ -13,37 +13,37 @@ datasource db {
 }
 
 model Movie {
-  id          String   @id @default(uuid())
-  tmdbId      Int      @unique
-  title       String
-  posterPath  String?
-  releaseYear Int?
-  createdAt   DateTime @default(now())
+  id             String           @id @default(uuid())
+  tmdbId         Int              @unique
+  title          String
+  posterPath     String?
+  releaseYear    Int?
+  createdAt      DateTime         @default(now())
   watchlistItems WatchlistItem[]
-  mediaItems MediaItemMovie[]
-  notes DiaryEntry[]
+  mediaItems     MediaItemMovie[]
+  notes          DiaryEntry[]
 }
 
 model Watchlist {
-  id         String   @id @default(uuid())
-  name       String
-  description     String?  // Tiptap JSON, stringified
-  descriptionText String?  // plain-text mirror, for search
-  slug       String   @unique
-  visibility String   @default("PRIVATE") // PRIVATE | PUBLIC
-  createdAt  DateTime @default(now())
-  watchlistItems WatchlistItem[]
+  id              String          @id @default(uuid())
+  name            String
+  description     String? // Tiptap JSON, stringified
+  descriptionText String? // plain-text mirror, for search
+  slug            String          @unique
+  visibility      String          @default("PRIVATE") // PRIVATE | PUBLIC
+  createdAt       DateTime        @default(now())
+  watchlistItems  WatchlistItem[]
 }
 
 model WatchlistItem {
-  watchlistId  String
-  movieId    String
-  addedAt DateTime @default(now())
-  description     String?  // Tiptap JSON, stringified
-  descriptionText String?  // plain-text mirror, for search
+  watchlistId     String
+  movieId         String
+  addedAt         DateTime @default(now())
+  description     String? // Tiptap JSON, stringified
+  descriptionText String? // plain-text mirror, for search
 
-  watchlist  Watchlist  @relation(fields: [watchlistId], references: [id])
-  movie Movie @relation(fields: [movieId], references: [id])
+  watchlist Watchlist @relation(fields: [watchlistId], references: [id])
+  movie     Movie     @relation(fields: [movieId], references: [id])
 
   @@id([watchlistId, movieId])
 }
@@ -51,7 +51,7 @@ model WatchlistItem {
 model MediaItem {
   id            String   @id @default(uuid())
   movieId       String
-  format        String   // DVD | BLU_RAY | 4K | VHS
+  format        String // DVD | BLU_RAY | 4K | VHS
   upc           String   @unique
   shelfLocation String?
   acquiredDate  DateTime @default(now())
@@ -75,8 +75,8 @@ model DiaryEntry {
   watchedDate DateTime
   rating      Int // 0-10, half-star increments (divide by 2 for display)
   rewatch     Boolean  @default(false)
-  notes       String?  // Tiptap JSON, stringified
-  notesText   String?  // plain-text mirror, for search
+  notes       String? // Tiptap JSON, stringified
+  notesText   String? // plain-text mirror, for search
   createdAt   DateTime @default(now())
 
   movie Movie @relation(fields: [movieId], references: [id])
@@ -88,4 +88,67 @@ model Subscriber {
   subscribedAt     DateTime  @default(now())
   unsubscribedAt   DateTime?
   unsubscribeToken String    @unique
+}
+
+model User {
+  id            String    @id @default(uuid())
+  name          String
+  email         String
+  emailVerified Boolean   @default(false)
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  sessions      Session[]
+  accounts      Account[]
+
+  @@unique([email])
+  @@map("user")
+}
+
+model Session {
+  id        String    @id @default(uuid())
+  expiresAt DateTime
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@index([userId])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id @default(uuid())
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@index([userId])
+  @@map("account")
+}
+
+model Verification {
+  id         String    @id @default(uuid())
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([identifier])
+  @@map("verification")
 }
