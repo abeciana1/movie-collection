@@ -1,6 +1,9 @@
 import type { UserT } from "@/types/api-response/user"
 
-export type WatchlistVisibility = "PRIVATE" | "PUBLIC";
+export enum WatchlistVisibilityEnum {
+  PRIVATE = "PRIVATE",
+  PUBLIC = "PUBLIC"
+}
 
 export type WatchlistT = {
   id: string;
@@ -9,7 +12,7 @@ export type WatchlistT = {
   descriptionText?: string;
   slug: string;
   image?: string;
-  visibility: WatchlistVisibility;
+  visibility: WatchlistVisibilityEnum;
   createdAt: string;
   updatedAt: string;
   userId: string;
