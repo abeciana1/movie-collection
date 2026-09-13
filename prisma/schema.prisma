@@ -26,12 +26,14 @@ model Movie {
 
 model Watchlist {
   id              String          @id @default(uuid())
+  image           String?
   name            String
   description     String? // Tiptap JSON, stringified
   descriptionText String? // plain-text mirror, for search
   slug            String          @unique
   visibility      String          @default("PRIVATE") // PRIVATE | PUBLIC
   createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
   watchlistItems  WatchlistItem[]
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -74,6 +76,7 @@ model MediaItemMovie {
 
 model DiaryEntry {
   id          String   @id @default(uuid())
+  title       String
   movieId     String
   watchedDate DateTime
   rating      Int // 0-10, half-star increments (divide by 2 for display)
@@ -81,7 +84,7 @@ model DiaryEntry {
   notes       String? // Tiptap JSON, stringified
   notesText   String? // plain-text mirror, for search
   createdAt   DateTime @default(now())
-
+  rewatchCount Int      @default(0)
   movie Movie @relation(fields: [movieId], references: [id])
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
