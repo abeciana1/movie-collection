@@ -8,7 +8,6 @@ export enum MediaItemFormatEnum {
 }
 
 export type MediaItemT = {
-  id: string;
   format: MediaItemFormatEnum;
   upc: string;
   shelfLocation?: string;
