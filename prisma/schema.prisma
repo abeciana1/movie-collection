@@ -78,6 +78,7 @@ model DiaryEntry {
   id          String   @id @default(uuid())
   title       String
   movieId     String
+  slug        String   @unique
   watchedDate DateTime
   rating      Int // 0-10, half-star increments (divide by 2 for display)
   rewatch     Boolean  @default(false)
