@@ -13,6 +13,10 @@ export type MovieT = {
   watchlistItems?: WatchlistItemT[];
   createdAt: string;
   updatedAt: string;
+  _count?: {
+    mediaItems?: MediaItemT[];
+    watchlistItems?: WatchlistItemT[];
+  }
 }
 
 export interface ApiMovieAttributes extends Pick<MovieT,
