@@ -2,486 +2,336 @@
 
 /*
 |--------------------------------------------------------------------------
-| Reelhouse Color System
+| REELHOUSE COLOR SYSTEM
 |--------------------------------------------------------------------------
 |
-| Core design direction:
+| LIGHT MODE
+| Background:  #FCFAF7
+| Foreground:  Slate 800
 |
-| Light mode
-|   Background: #FCFAF7
-|   Foreground: slate-800
+| DARK MODE
+| Background:  Slate 800
+| Foreground:  #FCFAF7
 |
-| Dark mode
-|   Background: slate-800
-|   Foreground: #FCFAF7
-|
-| Primary brand:
-|   Cinema Orange: #E46A2E
-|
-| Components should reference SEMANTIC colors such as:
-|
-|   bg-background
-|   text-foreground
-|   bg-card
-|   text-muted-foreground
-|   border-border
-|   bg-primary
-|
-| Avoid directly using raw palette colors inside components unless there
-| is a specific visual/design reason.
+| PRIMARY
+| Cinema Orange 500: #E46A2E
 |
 */
 
 
-/* ---------------------------------------------------------------------- */
-/* RAW / PRIMITIVE BRAND COLORS                                           */
-/* ---------------------------------------------------------------------- */
-
-:root {
+@theme {
   /*
-   * CINEMA ORANGE
-   *
-   * Main Reelhouse brand/accent color.
-   *
-   * Use for:
-   * - Primary buttons
-   * - Active navigation indicators
-   * - Selected states
-   * - Links that need stronger emphasis
-   * - Small branded accents
-   *
-   * Avoid using orange across large areas of the UI.
-   * Movie artwork should provide most of the application's color.
-   */
+  |--------------------------------------------------------------------------
+  | SLATE
+  |--------------------------------------------------------------------------
+  |
+  | Primary structural neutral.
+  |
+  | Used for:
+  | - Typography
+  | - Dark mode backgrounds
+  | - Dark mode surfaces
+  | - Borders
+  | - Muted text
+  | - Secondary controls
+  |
+  | Most-used shades:
+  |
+  | 50   → very light text in dark mode
+  | 200  → light borders
+  | 300  → muted dark-mode text
+  | 600  → muted light-mode text
+  | 700  → dark secondary surfaces
+  | 800  → MAIN foreground light / background dark
+  | 900  → deeper dark surfaces/sidebar
+  */
 
-  --cinema-orange-50: #fff5ef;
-  --cinema-orange-100: #ffe7d8;
-  --cinema-orange-200: #ffc9a8;
-  --cinema-orange-300: #ffa471;
-  --cinema-orange-400: #f78345;
-  --cinema-orange-500: #e46a2e;
-  --cinema-orange-600: #c9561f;
-  --cinema-orange-700: #a6421a;
-  --cinema-orange-800: #85351a;
-  --cinema-orange-900: #6e2e19;
-  --cinema-orange-950: #45190d;
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+
+  /* Main Reelhouse neutral */
+  --color-slate-800: #1e293b;
+
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617;
 
 
   /*
-   * WARM CREAM
-   *
-   * Core warm neutral used to keep the product feeling editorial,
-   * cinematic, and less like a typical blue-gray SaaS application.
-   */
+  |--------------------------------------------------------------------------
+  | CINEMA ORANGE
+  |--------------------------------------------------------------------------
+  |
+  | Reelhouse's primary brand color.
+  |
+  | 50–100  → subtle selected backgrounds
+  | 200–300 → focus / highlight states
+  | 400     → dark-mode hover
+  | 500     → PRIMARY CTA / brand color
+  | 600     → light-mode hover
+  | 700+    → strong selected / pressed states
+  */
 
-  --warm-cream: #fcfaf7;
+  --color-cinema-50: #fff5ef;
+  --color-cinema-100: #ffe7d8;
+  --color-cinema-200: #ffc9a8;
+  --color-cinema-300: #ffa471;
+  --color-cinema-400: #f78345;
+
+  /* Primary brand color */
+  --color-cinema-500: #e46a2e;
+
+  --color-cinema-600: #c9561f;
+  --color-cinema-700: #a6421a;
+  --color-cinema-800: #85351a;
+  --color-cinema-900: #6e2e19;
+  --color-cinema-950: #45190d;
 
 
   /*
-   * STATUS COLORS
-   *
-   * These should be used sparingly for application state,
-   * not as decorative colors.
-   */
+  |--------------------------------------------------------------------------
+  | WARM
+  |--------------------------------------------------------------------------
+  |
+  | Gives the light theme its warmer editorial / physical-media feeling.
+  |
+  | 50  → MAIN light-mode background + card background
+  | 100 → muted surfaces / inputs
+  | 200 → warm borders
+  */
 
-  --success: #2fa36b;
-  --warning: #d7a445;
-  --destructive: #d85b5b;
-  --info: #4a8fd9;
+  --color-warm-50: #fcfaf7;
+  --color-warm-100: #f7f3ed;
+  --color-warm-200: #eee8df;
+  --color-warm-300: #ded4c8;
+  --color-warm-400: #bfb2a3;
+  --color-warm-500: #9a8b7a;
+  --color-warm-600: #75695d;
+  --color-warm-700: #584f47;
+  --color-warm-800: #3a342f;
+  --color-warm-900: #241f1b;
+
+
+  /*
+  |--------------------------------------------------------------------------
+  | SEMANTIC STATUS COLORS
+  |--------------------------------------------------------------------------
+  */
+
+  /* Owned, saved, successfully added */
+  --color-success-100: #ddf6e9;
+  --color-success-500: #2fa36b;
+  --color-success-700: #1d6948;
+
+  /* Needs attention */
+  --color-warning-100: #fff0c2;
+  --color-warning-500: #d7a445;
+  --color-warning-700: #936522;
+
+  /* Errors / delete / remove */
+  --color-destructive-100: #ffe0e0;
+  --color-destructive-500: #d85b5b;
+  --color-destructive-700: #993434;
+
+  /* Informational state */
+  --color-info-100: #dfecfa;
+  --color-info-500: #4a8fd9;
+  --color-info-700: #3068a5;
 }
 
-
-/* ---------------------------------------------------------------------- */
-/* LIGHT MODE                                                             */
-/* ---------------------------------------------------------------------- */
-
 :root {
   /*
-   * PAGE
-   *
    * Main application canvas.
-   *
-   * #FCFAF7 gives the light theme a warmer editorial feel than pure white.
    */
-
-  --background: #fcfaf7;
+  --background: var(--color-warm-50); /* #FCFAF7 */
 
   /*
-   * PRIMARY TEXT
-   *
-   * You chose slate-800 rather than near-black.
-   * This keeps typography slightly softer while retaining strong contrast.
-   *
-   * Tailwind slate-800 = #1e293b
+   * Main typography.
    */
-
   --foreground: var(--color-slate-800);
 
 
   /*
-   * CARDS
+   * BENTO CARDS
    *
-   * Use white cards against the warm cream application background
-   * to create subtle depth without strong shadows.
+   * Same color as the canvas.
+   *
+   * Card separation should come from:
+   * - border
+   * - spacing
+   * - imagery
+   * - occasional subtle shadow
+   *
+   * This keeps the UI minimal.
    */
-
-  --card: #ffffff;
+  --card: var(--color-warm-50);
   --card-foreground: var(--color-slate-800);
 
 
   /*
-   * POPOVERS / MENUS / DROPDOWNS
-   *
-   * Use white for overlays so they remain visually distinct from
-   * the underlying application.
+   * Dropdowns can be slightly elevated from normal cards.
    */
-
   --popover: #ffffff;
   --popover-foreground: var(--color-slate-800);
 
 
   /*
-   * PRIMARY
-   *
-   * Main Reelhouse brand interaction color.
-   *
-   * Use for:
-   * - Add Item
-   * - Add to Collection
-   * - Save
-   * - Primary active states
+   * Main CTA / brand interaction.
    */
-
-  --primary: var(--cinema-orange-500);
-  --primary-hover: var(--cinema-orange-600);
+  --primary: var(--color-cinema-500);
   --primary-foreground: #ffffff;
+
+  --primary-hover: var(--color-cinema-600);
+  --primary-active: var(--color-cinema-700);
 
 
   /*
-   * SECONDARY
-   *
-   * Neutral buttons and lower-emphasis interactions.
-   *
-   * Examples:
-   * - View Details
-   * - Cancel
-   * - Secondary toolbar controls
+   * Secondary buttons / controls.
    */
-
-  --secondary: var(--color-slate-100);
+  --secondary: var(--color-warm-100);
   --secondary-foreground: var(--color-slate-800);
 
 
   /*
-   * MUTED
-   *
-   * Low-emphasis surfaces.
-   *
-   * Examples:
-   * - Search field
-   * - Filter chips
-   * - Table/list hover backgrounds
-   * - Inactive UI
+   * Quiet surfaces:
+   * - Search
+   * - Filters
+   * - Inactive controls
    */
-
-  --muted: var(--color-slate-100);
+  --muted: var(--color-warm-100);
 
   /*
-   * Secondary text and metadata.
-   *
-   * Examples:
-   * - Release year
-   * - Runtime
+   * Metadata:
+   * - Year
    * - Genre
-   * - Format labels
-   * - Descriptions
+   * - Runtime
+   * - Physical format
    */
-
   --muted-foreground: var(--color-slate-600);
 
 
   /*
-   * ACCENT
-   *
-   * Very subtle orange state.
-   *
-   * Good for:
-   * - Selected sidebar item backgrounds
-   * - Selected filters
-   * - Soft hover states related to the brand
+   * Selected navigation/filter state.
    */
-
-  --accent: var(--cinema-orange-100);
-  --accent-foreground: var(--cinema-orange-800);
+  --accent: var(--color-cinema-100);
+  --accent-foreground: var(--color-cinema-800);
 
 
   /*
-   * BORDERS
-   *
-   * Keep borders subtle.
-   * Bento cards should primarily be separated through spacing and surfaces.
+   * Main card/input border.
    */
+  --border: var(--color-warm-200);
 
-  --border: var(--color-slate-200);
+  --input: var(--color-warm-100);
 
   /*
-   * INPUTS
-   *
-   * Search, select, filter, and form field backgrounds.
+   * Keyboard focus.
    */
-
-  --input: var(--color-slate-100);
+  --ring: var(--color-cinema-300);
 
 
   /*
-   * FOCUS
+   * Sidebar.
    *
-   * Visible keyboard / accessibility focus indicator.
+   * Keep it subtle rather than making it a dramatically
+   * different panel.
    */
-
-  --ring: var(--cinema-orange-400);
-
-
-  /* Status */
-
-  --success-foreground: #ffffff;
-  --warning-foreground: var(--color-slate-900);
-  --destructive-foreground: #ffffff;
-  --info-foreground: #ffffff;
-
-
-  /*
-   * SIDEBAR
-   *
-   * Slightly separated from the main canvas without making it
-   * look like an unrelated panel.
-   */
-
-  --sidebar: #f7f5f1;
+  --sidebar: var(--color-warm-50);
   --sidebar-foreground: var(--color-slate-800);
-  --sidebar-accent: var(--cinema-orange-100);
-  --sidebar-accent-foreground: var(--cinema-orange-800);
-  --sidebar-border: var(--color-slate-200);
+
+  --sidebar-accent: var(--color-cinema-100);
+  --sidebar-accent-foreground: var(--color-cinema-800);
+
+  --sidebar-border: var(--color-warm-200);
 }
-
-
-/* ---------------------------------------------------------------------- */
-/* DARK MODE                                                              */
-/* ---------------------------------------------------------------------- */
 
 .dark {
   /*
-   * PAGE
-   *
-   * Your selected slate-800 acts as the primary dark-mode canvas.
+   * Main dark canvas.
    */
-
   --background: var(--color-slate-800);
 
   /*
-   * PRIMARY TEXT
-   *
-   * Same warm cream used as the light theme background.
-   * This creates a direct visual relationship between both themes.
+   * Warm cream instead of pure white.
    */
-
-  --foreground: #fcfaf7;
+  --foreground: var(--color-warm-50);
 
 
   /*
-   * CARDS
+   * Keep bento cards on the SAME primary surface.
    *
-   * Cards should be slightly lighter than the page background.
-   *
-   * This creates your bento structure without needing heavy shadows.
+   * This mirrors the minimal light theme.
    */
-
-  --card: var(--color-slate-700);
-  --card-foreground: #fcfaf7;
+  --card: var(--color-slate-800);
+  --card-foreground: var(--color-warm-50);
 
 
   /*
-   * POPOVERS
+   * Elevated overlays can use Slate 700.
    */
-
   --popover: var(--color-slate-700);
-  --popover-foreground: #fcfaf7;
+  --popover-foreground: var(--color-warm-50);
 
 
   /*
-   * PRIMARY
-   *
-   * Keep the same brand orange between themes.
-   * Brand identity should not change when switching themes.
+   * Brand stays consistent.
    */
-
-  --primary: var(--cinema-orange-500);
-  --primary-hover: var(--cinema-orange-400);
+  --primary: var(--color-cinema-500);
   --primary-foreground: #ffffff;
 
+  --primary-hover: var(--color-cinema-400);
+  --primary-active: var(--color-cinema-600);
+
 
   /*
-   * SECONDARY
-   *
-   * Neutral buttons and low-emphasis controls.
+   * Secondary buttons / controls.
    */
-
   --secondary: var(--color-slate-700);
-  --secondary-foreground: #fcfaf7;
+  --secondary-foreground: var(--color-warm-50);
 
 
   /*
-   * MUTED
-   *
-   * Low-priority surfaces.
+   * Quiet surfaces.
    */
-
   --muted: var(--color-slate-700);
 
   /*
-   * Metadata and secondary text.
-   *
-   * Examples:
-   * 2024 • Sci-Fi • 2h 14m
-   * Blu-ray
-   * Added 2 days ago
+   * Secondary metadata.
    */
-
   --muted-foreground: var(--color-slate-300);
 
 
   /*
-   * ACCENT
-   *
-   * Dark theme selected / highlighted state.
+   * Selected navigation/filter state.
    */
-
-  --accent: var(--cinema-orange-800);
-  --accent-foreground: var(--cinema-orange-100);
+  --accent: var(--color-cinema-800);
+  --accent-foreground: var(--color-cinema-100);
 
 
   /*
-   * BORDERS
+   * Borders are what define the bento cards.
    */
-
-  --border: var(--color-slate-600);
-
-  /*
-   * INPUTS
-   */
+  --border: var(--color-slate-700);
 
   --input: var(--color-slate-700);
 
-  /*
-   * ACCESSIBILITY / FOCUS
-   */
-
-  --ring: var(--cinema-orange-400);
-
-
-  /* Status */
-
-  --success-foreground: #ffffff;
-  --warning-foreground: var(--color-slate-900);
-  --destructive-foreground: #ffffff;
-  --info-foreground: #ffffff;
+  --ring: var(--color-cinema-400);
 
 
   /*
-   * SIDEBAR
-   *
-   * Slightly deeper than cards while still belonging to the same
-   * slate color family.
+   * Sidebar stays predominantly Slate 800.
+   * A border separates it from the application.
    */
+  --sidebar: var(--color-slate-800);
+  --sidebar-foreground: var(--color-warm-50);
 
-  --sidebar: var(--color-slate-900);
-  --sidebar-foreground: #fcfaf7;
-  --sidebar-accent: var(--cinema-orange-800);
-  --sidebar-accent-foreground: var(--cinema-orange-100);
+  --sidebar-accent: var(--color-cinema-800);
+  --sidebar-accent-foreground: var(--color-cinema-100);
+
   --sidebar-border: var(--color-slate-700);
-}
-
-
-/* ---------------------------------------------------------------------- */
-/* TAILWIND SEMANTIC COLOR TOKENS                                         */
-/* ---------------------------------------------------------------------- */
-
-@theme inline {
-  /*
-   * These expose the variables above as Tailwind utilities.
-   *
-   * Examples:
-   *
-   * bg-background
-   * text-foreground
-   * bg-card
-   * text-card-foreground
-   * bg-primary
-   * hover:bg-primary-hover
-   * border-border
-   */
-
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-
-  --color-primary: var(--primary);
-  --color-primary-hover: var(--primary-hover);
-  --color-primary-foreground: var(--primary-foreground);
-
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-
-  --color-success: var(--success);
-  --color-success-foreground: var(--success-foreground);
-
-  --color-warning: var(--warning);
-  --color-warning-foreground: var(--warning-foreground);
-
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-
-  --color-info: var(--info);
-  --color-info-foreground: var(--info-foreground);
-
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-
-
-  /*
-   * Optional: expose your Cinema Orange scale directly.
-   *
-   * Use these rarely. Most components should use `primary`
-   * instead of a specific orange shade.
-   */
-
-  --color-cinema-50: var(--cinema-orange-50);
-  --color-cinema-100: var(--cinema-orange-100);
-  --color-cinema-200: var(--cinema-orange-200);
-  --color-cinema-300: var(--cinema-orange-300);
-  --color-cinema-400: var(--cinema-orange-400);
-  --color-cinema-500: var(--cinema-orange-500);
-  --color-cinema-600: var(--cinema-orange-600);
-  --color-cinema-700: var(--cinema-orange-700);
-  --color-cinema-800: var(--cinema-orange-800);
-  --color-cinema-900: var(--cinema-orange-900);
-  --color-cinema-950: var(--cinema-orange-950);
 }
