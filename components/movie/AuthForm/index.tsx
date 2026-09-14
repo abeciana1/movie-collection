@@ -1,19 +1,14 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent
-} from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import Google from "@/social-logos/Google";
-import { authClient } from "@/lib/auth/auth-client"
+import { authClient } from "@/lib/auth/auth-client";
 import logger from "@/lib/helpers/logger";
 
 const authOptions = {
-  callbackURL: "/welcome",
+  callbackURL: "/home",
   errorCallbackURL: "/",
-  newUserCallbackURL: "/welcome",
+  newUserCallbackURL: "/home",
 };
 
 const AuthForm = () => {
@@ -28,27 +23,27 @@ const AuthForm = () => {
           onRequest: (ctx) => {
             logger(
               "User is about to sign in",
-              `ctx:\n${JSON.stringify(ctx, null, 2)}`
+              `ctx:\n${JSON.stringify(ctx, null, 2)}`,
             );
           },
           onSuccess: (ctx) => {
             logger(
               "User has signed in",
-              `ctx:\n${JSON.stringify(ctx, null, 2)}`
+              `ctx:\n${JSON.stringify(ctx, null, 2)}`,
             );
           },
           onError: (ctx) => {
             logger(
               "User failed to sign in",
-              `ctx:\n${JSON.stringify(ctx, null, 2)}`
+              `ctx:\n${JSON.stringify(ctx, null, 2)}`,
             );
           },
-        }
+        },
       );
     } catch (error) {
       logger(
         "User failed to sign in with Google",
-        `error: \n${JSON.stringify(error, null, 2)}`
+        `error: \n${JSON.stringify(error, null, 2)}`,
       );
     }
   };
