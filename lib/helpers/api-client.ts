@@ -1,7 +1,7 @@
 import type { ApiFetchOptions, HttpMethod } from "@/types/api";
 
 export function createApiClient(baseUrl: string, defaultHeaders: HeadersInit = {}) {
-  return async function apiFetch<TResponse>(
+  const apiFetch = async function <TResponse>(
     method: HttpMethod,
     path: string,
     options: ApiFetchOptions = {},
@@ -26,5 +26,18 @@ export function createApiClient(baseUrl: string, defaultHeaders: HeadersInit = {
     }
     if (res.status === 204) return undefined as TResponse;
     return (await res.json()) as TResponse;
+  };
+
+  return {
+    get: <TResponse>(path: string, options?: Omit<ApiFetchOptions, "json">) =>
+      apiFetch<TResponse>("GET", path, options),
+    post: <TResponse>(path: string, options?: ApiFetchOptions) =>
+      apiFetch<TResponse>("POST", path, options),
+    put: <TResponse>(path: string, options?: ApiFetchOptions) =>
+      apiFetch<TResponse>("PUT", path, options),
+    patch: <TResponse>(path: string, options?: ApiFetchOptions) =>
+      apiFetch<TResponse>("PATCH", path, options),
+    delete: <TResponse>(path: string, options?: Omit<ApiFetchOptions, "json">) =>
+      apiFetch<TResponse>("DELETE", path, options),
   };
 }

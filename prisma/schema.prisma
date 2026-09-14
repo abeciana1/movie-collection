@@ -26,13 +26,17 @@ model Movie {
 
 model Watchlist {
   id              String          @id @default(uuid())
+  image           String?
   name            String
   description     String? // Tiptap JSON, stringified
   descriptionText String? // plain-text mirror, for search
   slug            String          @unique
   visibility      String          @default("PRIVATE") // PRIVATE | PUBLIC
   createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
   watchlistItems  WatchlistItem[]
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model WatchlistItem {
@@ -50,13 +54,14 @@ model WatchlistItem {
 
 model MediaItem {
   id            String   @id @default(uuid())
-  movieId       String
   format        String // DVD | BLU_RAY | 4K | VHS
-  upc           String   @unique
+  upc           String @unique
   shelfLocation String?
   acquiredDate  DateTime @default(now())
 
   movies MediaItemMovie[]
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model MediaItemMovie {
@@ -71,15 +76,19 @@ model MediaItemMovie {
 
 model DiaryEntry {
   id          String   @id @default(uuid())
+  title       String
   movieId     String
+  slug        String   @unique
   watchedDate DateTime
   rating      Int // 0-10, half-star increments (divide by 2 for display)
   rewatch     Boolean  @default(false)
   notes       String? // Tiptap JSON, stringified
   notesText   String? // plain-text mirror, for search
   createdAt   DateTime @default(now())
-
+  rewatchCount Int      @default(0)
   movie Movie @relation(fields: [movieId], references: [id])
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Subscriber {
@@ -100,6 +109,9 @@ model User {
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
   accounts      Account[]
+  watchlists Watchlist[]
+  diaryEntries DiaryEntry[]
+  mediaItems MediaItem[]
 
   @@unique([email])
   @@map("user")
