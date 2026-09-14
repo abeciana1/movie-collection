@@ -8,3 +8,7 @@ allowBuilds:
   prisma: true
   unrs-resolver: true
   workerd: set this to true or false
+
+overrides:
+  "@better-auth/core": "1.7.4"
+  "better-call": "1.4.0"
