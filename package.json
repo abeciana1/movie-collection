@@ -21,7 +21,7 @@
     "@libsql/client": "^0.17.4",
     "@prisma/adapter-libsql": "^7.10.0",
     "@prisma/client": "^7.10.0",
-    "better-auth": "^1.7.2",
+    "better-auth": "^1.7.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cn": "^0.2.6",
@@ -67,5 +67,11 @@
     "typescript": "^5",
     "vite": "latest",
     "vitest": "latest"
+  },
+  "pnpm": {
+    "overrides": {
+      "@better-auth/core": "1.7.2",
+      "better-call": "1.4.0"
+    }
   }
 }
