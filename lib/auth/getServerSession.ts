@@ -16,7 +16,8 @@ export const getServerSession = async (): Promise<BetterAuthSession | null> => {
       headers: { cookie: cookieHeaderToUse },
       cache: "no-store",
     });
-  } catch {
+  } catch (error) {
+    console.error("getServerSession failed:", error);
     return null;
   }
 };
