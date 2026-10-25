@@ -1,11 +1,8 @@
 import { createAuthClient } from "better-auth/react";
-import { isHttps } from "@/lib/auth/auth"
 import { nextCookies } from "better-auth/next-js";
-
 
 export const authClient = createAuthClient({
   baseURL: process.env.BETTER_AUTH_URL,
-  secret: process.env.BETTER_AUTH_SECRET,
   logger: {
     level: "debug",
   },
@@ -17,5 +14,4 @@ export const authClient = createAuthClient({
     },
   },
   plugins: [nextCookies()],
-  advanced: { useSecureCookies: !!isHttps, cookiePrefix: "reelhouse" }
 });
