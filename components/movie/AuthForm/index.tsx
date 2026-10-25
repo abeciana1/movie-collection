@@ -1,6 +1,6 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/Button";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/Card";
 import Google from "@/social-logos/Google";
 import { authClient } from "@/lib/auth/auth-client";
 import logger from "@/lib/helpers/logger";
