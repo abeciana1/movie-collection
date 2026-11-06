@@ -1,10 +1,11 @@
 import { Logo } from "@/components/movie/Navigation/Logo";
 import { Button } from "@/components/ui/Button";
-import { Plus } from 'lucide-react';
+import { Plus } from "lucide-react";
+import { headerBarVariants } from "./HeaderBar.variants";
 
 const HeaderBar = () => {
   return (
-    <header>
+    <header className={headerBarVariants}>
       <Logo />
       <Button className="rounded-full px-4 py-2 font-medium text-lg">
         <Plus className="size-6" />
