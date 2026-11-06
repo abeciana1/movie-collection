@@ -1,10 +1,7 @@
-import { auth } from "@/lib/auth/auth";
-import { headers } from "next/headers";
+import { Profile } from "@/components/movie/Navigation/Profile";
 
 export const AccountMenu = async () => {
-  const session = await auth.api.getSession({ headers: await headers() });
-  console.log("Fetching session...", session);
   return (
-    <></>
+    <Profile />
   )
 }
