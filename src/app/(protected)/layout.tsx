@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono, Inter } from "next/font/google";
+import HeaderBar from "@/components/movie/Navigation/HeaderBar";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider>
+          <HeaderBar />
           {children}
         </ThemeProvider>
       </body>
