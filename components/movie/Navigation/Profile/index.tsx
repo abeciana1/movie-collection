@@ -1,3 +1,5 @@
+"use cache"
+import { cacheLife } from "next/cache";
 import {
   Avatar,
   AvatarFallback,
@@ -7,6 +9,7 @@ import { getServerSession } from "@/lib/auth/getServerSession";
 
 
 export const Profile = async () => {
+  cacheLife("max")
   const session = await getServerSession();
   return (
     <Avatar>
