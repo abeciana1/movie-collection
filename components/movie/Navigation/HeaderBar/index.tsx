@@ -3,16 +3,16 @@ import { Button } from "@/components/ui/Button";
 import { Plus } from "lucide-react";
 import { headerBarVariants } from "./HeaderBar.variants";
 import { AccountMenu } from "@/components/movie/Navigation/AccountMenu";
-import { headerBarAccountMenu } from "./HeaderBar.variants";
+import { headerBarAccountMenu, headerBarAddItemButton } from "./HeaderBar.variants";
 
 const HeaderBar = () => {
   return (
     <header className={headerBarVariants}>
       <Logo />
       <div className={headerBarAccountMenu}>
-        <Button className="rounded-full px-4 py-2 font-medium text-lg">
+        <Button className={headerBarAddItemButton}>
           <Plus className="size-6" />
-          Add Item
+          <span className="hidden md:inline">Add Item</span>
         </Button>
         <AccountMenu />
       </div>
