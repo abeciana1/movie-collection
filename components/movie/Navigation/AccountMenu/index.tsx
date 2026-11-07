@@ -1,4 +1,5 @@
 import { Profile } from "@/components/movie/Navigation/Profile";
+import { accountMenuTrigger } from "./AccountMenu.variants";
 import { Suspense } from "react";
 import { ProfilePlaceholder } from "@/components/movie/Navigation/Profile/Profile.placeholder";
 import {
@@ -10,7 +11,6 @@ import {
   NavigationMenuTrigger
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
-import { accountMenuTriggerVariants } from "./AccountMenu.variants"
 
 const accountMenuItems = [{ label: "Settings", href: "/settings" }];
 
@@ -20,7 +20,7 @@ export const AccountMenu = () => {
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger>
+            <NavigationMenuTrigger className={accountMenuTrigger}>
               <Profile />
             </NavigationMenuTrigger>
             <NavigationMenuContent>
