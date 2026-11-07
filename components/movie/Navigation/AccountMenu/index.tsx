@@ -19,7 +19,7 @@ export const AccountMenu = () => {
     <Suspense fallback={<ProfilePlaceholder />}>
       <NavigationMenu>
         <NavigationMenuList>
-          <NavigationMenuItem>
+          <NavigationMenuItem className="flex items-center">
             <NavigationMenuTrigger className={accountMenuTrigger}>
               <Profile />
             </NavigationMenuTrigger>
