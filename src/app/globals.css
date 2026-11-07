@@ -203,7 +203,7 @@
    * - Filters
    * - Inactive controls
    */
-  --muted: var(--color-warm-100);
+  --muted: var(--color-slate-50);
 
   /*
    * Metadata:
