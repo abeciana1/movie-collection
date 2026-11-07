@@ -1,6 +1,6 @@
 // import { cva } from "class-variance-authority";
 
-export const headerBarVariants = "flex justify-between items-center px-4 py-4";
+export const headerBarVariants = "flex justify-between items-center px-4 py-4 gap-2";
 
 export const headerBarAccountMenu = "flex items-center gap-2 md:gap-5";
 
