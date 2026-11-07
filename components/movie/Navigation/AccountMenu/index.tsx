@@ -20,7 +20,7 @@ export const AccountMenu = () => {
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger className={accountMenuTriggerVariants}>
+            <NavigationMenuTrigger>
               <Profile />
             </NavigationMenuTrigger>
             <NavigationMenuContent>
