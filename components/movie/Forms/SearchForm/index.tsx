@@ -1,32 +1,29 @@
-import {
-  Field,
-  FieldGroup,
-  FieldLabel,
-  FieldSet,
-} from "@/components/ui/field"
+import { Field, FieldGroup, FieldLabel, FieldSet } from "@/components/ui/field";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from "@/components/ui/input-group"
-import { searchLabel } from "./SearchFrom.variants"
-import { Search } from "lucide-react"
+} from "@/components/ui/input-group";
+import { searchLabel, searchInputGroup } from "./SearchFrom.variants";
+import { Search } from "lucide-react";
 
 export const SearchForm = () => {
   return (
     <search>
-      <form>
+      <form className={searchInputGroup}>
         <FieldGroup>
           <FieldSet>
             <Field>
-              <FieldLabel htmlFor="global-search" className={searchLabel}>Search for a movie, series, or actor</FieldLabel>
+              <FieldLabel htmlFor="global-search" className={searchLabel}>
+                Search for a movie, series, or actor
+              </FieldLabel>
               <InputGroup>
                 <InputGroupInput
                   id="global-search"
                   placeholder="Search for a movie, series, or actor"
                 />
                 <InputGroupAddon>
-                  <Search/>
+                  <Search />
                 </InputGroupAddon>
               </InputGroup>
             </Field>
@@ -34,5 +31,5 @@ export const SearchForm = () => {
         </FieldGroup>
       </form>
     </search>
-  )
-}
+  );
+};
