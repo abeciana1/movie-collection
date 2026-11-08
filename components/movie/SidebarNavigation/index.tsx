@@ -1,8 +1,8 @@
 
 export const SidebarNavigation = () => {
   return (
-    <div>
-      {/* Sidebar content goes here */}
-    </div>
+    <nav>
+      <ul></ul>
+    </nav>
   );
 };
