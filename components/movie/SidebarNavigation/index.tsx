@@ -27,12 +27,14 @@ const sidebarLinks: SidebarLinkProps[] = [
 
 export const SidebarNavigation = () => {
   return (
-    <nav className={sidebarNavigation}>
-      <ul>
-        {sidebarLinks.map((link) => (
-          <SidebarLink key={link.href} {...link} />
-        ))}
-      </ul>
-    </nav>
+    <aside>
+      <nav className={sidebarNavigation}>
+        <ul>
+          {sidebarLinks.map((link) => (
+            <SidebarLink key={link.href} {...link} />
+          ))}
+        </ul>
+      </nav>
+    </aside>
   );
 };
