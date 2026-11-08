@@ -5,22 +5,22 @@ const sidebarLinks: SidebarLinkProps[] = [
   {
     href: "/home",
     label: "Home",
-    icon: <House />
+    icon: <House size={32} />
   },
   {
     href: "/watchlist",
     label: "Watchlist",
-    icon: <Bookmark />
+    icon: <Bookmark size={32} />
   },
   {
     href: "/collection",
     label: "Collection",
-    icon: <Database />
+    icon: <Database size={32} />
   },
   {
     href: "/browse",
     label: "Browse",
-    icon: <LayoutGrid />
+    icon: <LayoutGrid size={32} />
   }
 ]
 
