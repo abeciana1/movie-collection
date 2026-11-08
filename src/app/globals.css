@@ -142,6 +142,8 @@
   --color-info-100: #dfecfa;
   --color-info-500: #4a8fd9;
   --color-info-700: #3068a5;
+
+  --container-wide: 90rem;
 }
 
 :root {
