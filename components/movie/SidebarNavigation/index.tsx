@@ -21,7 +21,8 @@ const sidebarLinks: SidebarLinkProps[] = [
   {
     href: "/browse",
     label: "Browse",
-    icon: <LayoutGrid size={32} />
+    icon: <LayoutGrid size={32} />,
+    showArrow: true
   }
 ]
 
