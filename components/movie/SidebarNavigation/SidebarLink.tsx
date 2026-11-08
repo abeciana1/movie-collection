@@ -12,7 +12,6 @@ export interface SidebarLinkProps {
 
 export const SidebarLink = ({ href, label, icon }: SidebarLinkProps) => {
   const pathname = usePathname();
-  console.log(pathname);
 
   return (
     <li>
