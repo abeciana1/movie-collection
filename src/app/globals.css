@@ -215,6 +215,7 @@
    * - Physical format
    */
   --muted-foreground: var(--color-slate-600);
+  --muted-background: var(--color-slate-200);
 
 
   /*
@@ -306,7 +307,7 @@
    * Secondary metadata.
    */
   --muted-foreground: var(--color-slate-300);
-
+  --muted-background: var(--color-slate-700);
 
   /*
    * Selected navigation/filter state.
@@ -358,6 +359,7 @@
 
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+  --color-muted-background: var(--muted-background);
 
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
