@@ -11,8 +11,14 @@ export default function ProtectedLayout({ children }: LayoutProps<"/">) {
   return (
     <ThemeProvider>
       <HeaderBar />
-      <SidebarNavigation/>
-      {children}
+      <div className="flex">
+        <SidebarNavigation/>
+        <main className="min-w-0 flex-1">
+          <div className="mx-auto w-full max-w-wide">
+            {children}
+          </div>
+        </main>
+      </div>
     </ThemeProvider>
   );
 }
