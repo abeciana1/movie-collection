@@ -1,6 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    // Avoid the Next.js 16.4 Turbopack reload loop after a warm restart.
+    // https://github.com/vercel/next.js/issues/100267
+    turbopackFileSystemCacheForDev: false,
+  },
   cacheComponents: true,
   partialPrefetching: true,
   cacheLife: {
