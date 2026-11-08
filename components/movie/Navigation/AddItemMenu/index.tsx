@@ -25,10 +25,10 @@ export const AddItemMenu = () => {
             <NavigationMenuTrigger
               render={<Button />}
               className={headerBarAddItemButton}
-              aria-label="Add Item"
+              aria-label="Add"
             >
               <Plus className="size-6" />
-              <span className="hidden md:inline">Add Item</span>
+              <span className="hidden md:inline">Add</span>
             </NavigationMenuTrigger>
             <NavigationMenuContent>
               {addItemMenu.map((item) => (
