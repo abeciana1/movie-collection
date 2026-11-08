@@ -1,1 +1,1 @@
-export const sidebarNavigation = "max-w-fit"
+export const sidebarNavigation = "w-60"
