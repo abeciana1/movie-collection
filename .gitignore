@@ -49,3 +49,5 @@ dev.db
 storybook-static
 
 certificates
+
+prisma/migrations/*

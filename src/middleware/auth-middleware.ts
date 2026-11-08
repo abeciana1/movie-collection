@@ -6,7 +6,7 @@ const authMiddleware: MiddlewareFactory = (next) => {
   return async (request: NextRequest, event: NextFetchEvent) => {
     const session = await getServerSession();
 
-    if (!session?.session?.user) {
+    if (!session?.user) {
       const redirectUrl = request.nextUrl.clone();
       redirectUrl.pathname = "/";
       redirectUrl.search = "";
