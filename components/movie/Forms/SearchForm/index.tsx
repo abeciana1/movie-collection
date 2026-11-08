@@ -4,7 +4,11 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
-import { searchLabel, searchInputGroup } from "./SearchFrom.variants";
+import {
+  searchLabel,
+  searchInputGroup,
+  searchInput,
+} from "./SearchFrom.variants";
 import { Search } from "lucide-react";
 
 export const SearchForm = () => {
@@ -17,7 +21,7 @@ export const SearchForm = () => {
               <FieldLabel htmlFor="global-search" className={searchLabel}>
                 Search for a movie, series, or actor
               </FieldLabel>
-              <InputGroup>
+              <InputGroup className={searchInput}>
                 <InputGroupInput
                   id="global-search"
                   placeholder="Search for a movie, series, or actor"
