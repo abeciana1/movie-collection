@@ -4,9 +4,11 @@ import {
   AvatarImage,
 } from "@/components/ui/avatar"
 import { getServerSession } from "@/lib/auth/getServerSession";
+import { connection } from "next/server";
 
 
 export const Profile = async () => {
+  await connection();
   const session = await getServerSession();
   return (
     <Avatar>
