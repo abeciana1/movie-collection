@@ -8,9 +8,11 @@ export interface SidebarLinkProps {
 
 export const SidebarLink = ({ href, label, icon }: SidebarLinkProps) => {
   return (
-    <Link href={href}>
-      {icon}
-      {label}
-    </Link>
+    <li>
+      <Link href={href}>
+        {icon}
+        {label}
+      </Link>
+    </li>
   );
 };
