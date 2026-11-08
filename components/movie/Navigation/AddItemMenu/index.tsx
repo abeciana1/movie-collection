@@ -22,11 +22,13 @@ export const AddItemMenu = () => {
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem className="flex items-center">
-            <NavigationMenuTrigger>
-              <Button className={headerBarAddItemButton}>
-                <Plus className="size-6" />
-                <span className="hidden md:inline">Add Item</span>
-              </Button>
+            <NavigationMenuTrigger
+              render={<Button />}
+              className={headerBarAddItemButton}
+              aria-label="Add Item"
+            >
+              <Plus className="size-6" />
+              <span className="hidden md:inline">Add Item</span>
             </NavigationMenuTrigger>
             <NavigationMenuContent>
               {addItemMenu.map((item) => (
