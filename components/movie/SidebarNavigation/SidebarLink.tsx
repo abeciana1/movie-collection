@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { sidebarLinkVariants } from "./SidebarLink.variants";
+import { cn } from "@/lib/utils";
 
 export interface SidebarLinkProps {
   href: string;
@@ -9,7 +11,7 @@ export interface SidebarLinkProps {
 export const SidebarLink = ({ href, label, icon }: SidebarLinkProps) => {
   return (
     <li>
-      <Link href={href}>
+      <Link href={href} className={cn(sidebarLinkVariants())}>
         {icon}
         {label}
       </Link>
