@@ -1,4 +1,4 @@
-import type { SidebarLinkProps } from "./SidebarLink";
+import { type SidebarLinkProps, SidebarLink } from "./SidebarLink";
 import { House, Bookmark, Database, LayoutGrid } from "lucide-react";
 
 const sidebarLinks: SidebarLinkProps[] = [
@@ -27,7 +27,11 @@ const sidebarLinks: SidebarLinkProps[] = [
 export const SidebarNavigation = () => {
   return (
     <nav>
-      <ul></ul>
+      <ul>
+        {sidebarLinks.map((link) => (
+          <SidebarLink key={link.href} {...link} />
+        ))}
+      </ul>
     </nav>
   );
 };
