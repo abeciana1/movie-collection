@@ -11,7 +11,7 @@ export default function ProtectedLayout({ children }: LayoutProps<"/">) {
   return (
     <ThemeProvider>
       <HeaderBar />
-      <div className="flex">
+      <div className="flex gap-6">
         <SidebarNavigation/>
         <main className="min-w-0 flex-1">
           <div className="mx-auto w-full max-w-wide">
