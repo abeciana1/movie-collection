@@ -13,14 +13,15 @@ export const PromoCardContainer = ({
   backgroundAltText = "background",
 }: PromoCardContainerProps) => {
   return (
-    <Card>
-      <CardContent>
+    <Card className="p-0">
+      <CardContent className="p-0">
         {backgroundImage && (
           <Image
             src={backgroundImage}
             alt={backgroundAltText}
             width={500}
             height={300}
+            className="rounded-lg"
           />
         )}
         {children}
