@@ -1,7 +1,3 @@
-// export const preheadingTitle = "text-lg font-medium flex flex-col"
-
-// export const headingTitle = "text-3xl font-bold"
-
 export const preheadingTitle =
   "flex flex-col text-xs font-medium tracking-[0.3em] text-muted-foreground";
 
