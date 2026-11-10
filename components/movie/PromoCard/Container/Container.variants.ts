@@ -28,4 +28,4 @@ export const cardBackgroundImage = cva("absolute inset-0", {
   },
 })
 
-export const cardChildrenWrapper = "relative z-10 max-w-sm" 
+export const cardChildrenWrapper = "relative z-10" 
