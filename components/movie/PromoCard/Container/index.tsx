@@ -1,5 +1,13 @@
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/Card";
+import {
+  cardOverride,
+  cardContainer,
+  cardContentInner,
+  cardBackgroundImage,
+  cardChildrenWrapper,
+} from "./Container.variants";
+import { cn } from "@/lib/utils";
 
 interface PromoCardContainerProps {
   children: React.ReactNode;
@@ -13,10 +21,10 @@ export const PromoCardContainer = ({
   backgroundAltText = "", // decorative by default
 }: PromoCardContainerProps) => {
   return (
-    <div className="min-w-0 flex-1">
-      <Card className="w-full overflow-hidden p-0 border-none">
+    <div className={cn(cardContainer)}>
+      <Card className={cn(cardOverride)}>
         <CardContent className="p-0">
-          <div className="relative flex min-h-80 flex-col justify-center p-8 md:min-h-96 md:p-12">
+          <div className={cn(cardContentInner)}>
             {backgroundImage && (
               <>
                 <Image
@@ -27,13 +35,10 @@ export const PromoCardContainer = ({
                   className="object-cover object-right"
                   loading="eager"
                 />
-                <div
-                  aria-hidden
-                  className="absolute inset-0 bg-background/55"
-                />
+                <div aria-hidden className={cn(cardBackgroundImage)} />
               </>
             )}
-            <div className="relative z-10 max-w-sm">{children}</div>
+            <div className={cn(cardChildrenWrapper)}>{children}</div>
           </div>
         </CardContent>
       </Card>
