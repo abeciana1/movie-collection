@@ -1,7 +1,7 @@
 import { PromoCardContainer } from "@/components/movie/PromoCard/Container";
 import ProjectorImage from "@/public/Vintage Film Reel in Golden Light.png";
 import { CardTitle, CardDescription } from "@/components/ui/Card";
-import { preheadingTitle, headingTitle } from "./AddCard.variants";
+import { preheadingTitle, headingTitle, cardDescription } from "./AddCard.variants";
 
 export const AddCard = () => {
   return (
@@ -15,7 +15,7 @@ export const AddCard = () => {
         <CardTitle className={headingTitle}>
           A home for the movies you love.
         </CardTitle>
-        <CardDescription className="flex flex-col text-base md:text-lg">
+        <CardDescription className={cardDescription}>
           <span>Track what you want to watch.</span>
           <span>Build a collection that matters.</span>
         </CardDescription>
