@@ -13,12 +13,14 @@ interface PromoCardContainerProps {
   children: React.ReactNode;
   backgroundImage?: string;
   backgroundAltText?: string;
+  addBackgroundImageOverlay?: boolean;
 }
 
 export const PromoCardContainer = ({
   children,
   backgroundImage,
   backgroundAltText = "", // decorative by default
+  addBackgroundImageOverlay = false
 }: PromoCardContainerProps) => {
   return (
     <div className={cn(cardContainer)}>
@@ -35,7 +37,7 @@ export const PromoCardContainer = ({
                   className="object-cover object-right"
                   loading="eager"
                 />
-                <div aria-hidden className={cn(cardBackgroundImage)} />
+                <div aria-hidden className={cn(cardBackgroundImage({ addBackgroundImageOverlay}))} />
               </>
             )}
             <div className={cn(cardChildrenWrapper)}>{children}</div>
