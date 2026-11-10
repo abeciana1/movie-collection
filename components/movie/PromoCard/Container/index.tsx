@@ -14,17 +14,19 @@ interface PromoCardContainerProps {
   backgroundImage?: string;
   backgroundAltText?: string;
   addBackgroundImageOverlay?: boolean;
+  addBorder?: boolean
 }
 
 export const PromoCardContainer = ({
   children,
   backgroundImage,
   backgroundAltText = "", // decorative by default
-  addBackgroundImageOverlay = false
+  addBackgroundImageOverlay = false,
+  addBorder = false
 }: PromoCardContainerProps) => {
   return (
     <div className={cn(cardContainer)}>
-      <Card className={cn(cardOverride)}>
+      <Card className={cn(cardOverride({ addBorder }))}>
         <CardContent className="p-0">
           <div className={cn(cardContentInner)}>
             {backgroundImage && (
