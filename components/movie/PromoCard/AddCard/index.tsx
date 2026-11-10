@@ -1,26 +1,25 @@
 import { PromoCardContainer } from "@/components/movie/PromoCard/Container";
-import ProjectorImage from "@/public/project-image.jpg"
-import { CardHeader, CardTitle, CardDescription } from "@/components/ui/Card";
+import ProjectorImage from "@/public/Vintage Film Reel in Golden Light.png";
+import { CardTitle, CardDescription } from "@/components/ui/Card";
 import { preheadingTitle, headingTitle } from "./AddCard.variants";
-import { cn } from "@/lib/utils";
 
 export const AddCard = () => {
   return (
-    <PromoCardContainer backgroundImage={ProjectorImage.src} backgroundAltText="Projector in black background">
-      <CardHeader>
-        <CardTitle className={cn(preheadingTitle)}>
+    <PromoCardContainer backgroundImage={ProjectorImage.src}>
+      <div className="flex flex-col gap-4">
+        <p className={preheadingTitle}>
           <span>WATCH</span>
           <span>COLLECT</span>
           <span>ENJOY</span>
+        </p>
+        <CardTitle className={headingTitle}>
+          A home for the movies you love.
         </CardTitle>
-        <CardTitle className={cn(headingTitle)}>
-          <h2>A home for the movies you love.</h2>
-        </CardTitle>
-        <CardDescription>
+        <CardDescription className="flex flex-col text-base md:text-lg">
           <span>Track what you want to watch.</span>
           <span>Build a collection that matters.</span>
         </CardDescription>
-      </CardHeader>
+      </div>
     </PromoCardContainer>
-  )
-}
+  );
+};
