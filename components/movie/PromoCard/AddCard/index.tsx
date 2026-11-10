@@ -5,7 +5,7 @@ import { preheadingTitle, headingTitle } from "./AddCard.variants";
 
 export const AddCard = () => {
   return (
-    <PromoCardContainer backgroundImage={ProjectorImage.src}>
+    <PromoCardContainer backgroundImage={ProjectorImage.src} addBackgroundImageOverlay>
       <div className="flex flex-col gap-4">
         <p className={preheadingTitle}>
           <span>WATCH</span>
