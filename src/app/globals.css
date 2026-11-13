@@ -252,7 +252,7 @@
 
   --sidebar-border: var(--color-warm-200);
 
-  --loading: var(--color-slate-500);
+  --loading: var(--color-slate-300);
 }
 
 .dark {
@@ -340,7 +340,7 @@
 
   --sidebar-border: var(--color-slate-700);
 
-  --loading: var(--color-slate-300);
+  --loading: var(--color-slate-500);
 }
 
 @theme inline {
