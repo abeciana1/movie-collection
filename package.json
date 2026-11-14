@@ -68,11 +68,5 @@
     "typescript": "^5",
     "vite": "latest",
     "vitest": "latest"
-  },
-  "pnpm": {
-    "overrides": {
-      "@better-auth/core": "1.7.2",
-      "better-call": "1.4.0"
-    }
   }
 }
