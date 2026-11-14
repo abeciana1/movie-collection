@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "dev": "next dev --turbopack --experimental-https",
     "lint": "eslint",
@@ -68,11 +68,5 @@
     "typescript": "^5",
     "vite": "latest",
     "vitest": "latest"
-  },
-  "pnpm": {
-    "overrides": {
-      "@better-auth/core": "1.7.2",
-      "better-call": "1.4.0"
-    }
   }
 }
