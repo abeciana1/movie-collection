@@ -1,10 +1,15 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const logger = (...args: Parameters<typeof console.log>) => {
+type LogMethod = 'log' | 'warn' | 'error'
+
+const logger = (
+  method: LogMethod,
+  ...args: Parameters<Console[LogMethod]>
+): void => {
   if (process.env.NODE_ENV !== 'production') {
-    console.log(...args)
-  } else {
-    // todo add production logger
+    console[method](...args)
+    return
   }
+
+  // TODO: Add production logger (e.g., Sentry)
 }
 
 export default logger
