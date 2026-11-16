@@ -16,5 +16,5 @@ export type MediaItemT = {
   user: UserT;
 }
 
-export interface ApiMediaItemAttributes extends Pick<MediaItemT,
-  "format" | "upc" | "shelfLocation" | "acquiredDate"> {}
+export type ApiMediaItemAttributes = Pick<MediaItemT, 
+  "format" | "upc" | "shelfLocation" | "acquiredDate">
