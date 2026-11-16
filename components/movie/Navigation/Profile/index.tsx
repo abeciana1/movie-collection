@@ -3,17 +3,15 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar"
-import { getServerSession } from "@/lib/auth/getServerSession";
-import { connection } from "next/server";
+import { requireUser } from "@/lib/auth/requireUser";
 
 
 export const Profile = async () => {
-  await connection();
-  const session = await getServerSession();
+  const user = await requireUser();
   return (
     <Avatar>
-      <AvatarImage src={session?.user?.image || ""} alt={session?.user?.name || ""} />
-      <AvatarFallback>{session?.user?.name?.[0] || "U"}</AvatarFallback>
+      <AvatarImage src={user.image || ""} alt={user.name || ""} />
+      <AvatarFallback>{user.name?.[0] || "U"}</AvatarFallback>
     </Avatar>
   );
 }
