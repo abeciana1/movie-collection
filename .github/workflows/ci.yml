@@ -1,4 +1,3 @@
-
 name: CI
 
 on:
@@ -10,10 +9,15 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   checks:
     name: Code Quality
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
       - name: Checkout repository
@@ -21,6 +25,8 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v6
+        with:
+          version: 11.5.0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -34,12 +40,13 @@ jobs:
       - name: Lint
         run: pnpm lint
 
-      - name: Generate Next.js types
-        run: pnpm exec next typegen
-
-      - name: Type check
-        run: pnpm exec tsc --noEmit
-
-      # Enable after adding a test script
-      # - name: Run tests
-      #   run: pnpm test
+      - name: Build
+        run: pnpm build
+        env:
+          # CI checks compilation only; deployment builds use real configuration.
+          BETTER_AUTH_URL: http://localhost:3000
+          NEXT_PUBLIC_BETTER_AUTH_BASE_URL: http://localhost:3000
+          BETTER_AUTH_SECRET: ci-only-placeholder-secret-not-for-production
+          TURSO_DATABASE_URL: file:./ci.db
+          GOOGLE_CLIENT_ID: ci-placeholder
+          GOOGLE_CLIENT_SECRET: ci-placeholder
