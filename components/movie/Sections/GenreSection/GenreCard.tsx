@@ -10,7 +10,7 @@ interface GenreCardProps {
 
 export const GenreCard = ({ genre }: GenreCardProps) => {
   return (
-    <Link href={`/genre/${genre.name}`}>  
+    <Link href={`/genre/${genre.name.toLowerCase()}`}>  
       <div>
         <Image src={genre.image} alt={genre.name} width={200} height={200} />
         <div>{genre.name}</div>
