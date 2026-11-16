@@ -22,18 +22,21 @@ const AuthForm = () => {
         {
           onRequest: (ctx) => {
             logger(
+              "error",
               "User is about to sign in",
               `ctx:\n${JSON.stringify(ctx, null, 2)}`,
             );
           },
           onSuccess: (ctx) => {
             logger(
+              "log",
               "User has signed in",
               `ctx:\n${JSON.stringify(ctx, null, 2)}`,
             );
           },
           onError: (ctx) => {
             logger(
+              "error",
               "User failed to sign in",
               `ctx:\n${JSON.stringify(ctx, null, 2)}`,
             );
@@ -42,6 +45,7 @@ const AuthForm = () => {
       );
     } catch (error) {
       logger(
+        "error",
         "User failed to sign in with Google",
         `error: \n${JSON.stringify(error, null, 2)}`,
       );
