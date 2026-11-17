@@ -1,10 +1,12 @@
 'use client';
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState, type ReactNode } from 'react';
 import useMeasure from 'react-use-measure';
 import { AnimatePresence, motion, MotionConfig, type Transition } from 'motion/react';
 import { cn } from '@/lib/utils';
 import useClickOutside from "@/hooks/useClickOutside"
 import { House, Bookmark, Database, LayoutGrid } from "lucide-react";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const transition: Transition = {
   type: 'spring',
@@ -12,68 +14,35 @@ const transition: Transition = {
   duration: 0.25,
 };
 
-const ITEMS = [
+// A link navigates (has `href`); a button expands the panel (has `content`).
+type NavItem = { id: number; label: string; icon: ReactNode } & (
+  | { href: string }
+  | { content: ReactNode }
+);
+
+const ITEMS: NavItem[] = [
   {
     id: 1,
     label: 'Home',
-    title: <House size={32} />,
-    content: (
-      <div className='flex flex-col space-y-4'>
-        <div className='flex flex-col space-y-1 text-zinc-700'>
-          <div className='h-8 w-8 rounded-full bg-linear-to-br from-blue-500 to-blue-400' />
-          <span>Ibelick</span>
-        </div>
-        <button
-          className='relative h-8 w-full scale-100 select-none appearance-none items-center justify-center rounded-lg border border-zinc-950/10 px-2 text-sm text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-800 focus-visible:ring-2 active:scale-[0.98]'
-          type='button'
-        >
-          Edit Profile
-        </button>
-      </div>
-    ),
+    icon: <House size={32} />,
+    href: '/home',
   },
   {
     id: 2,
     label: 'Watchlist',
-    title: <Bookmark size={32} />,
-    content: (
-      <div className='flex flex-col space-y-4'>
-        <div className='text-zinc-700'>You have 3 new messages.</div>
-        <button
-          className='relative h-8 w-full scale-100 select-none appearance-none items-center justify-center rounded-lg border border-zinc-950/10 px-2 text-sm text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-800 focus-visible:ring-2 active:scale-[0.98]'
-          type='button'
-        >
-          View more
-        </button>
-      </div>
-    ),
+    icon: <Bookmark size={32} />,
+    href: '/watchlist',
   },
   {
     id: 3,
     label: 'Collection',
-    title: <Database size={32} />,
-    content: (
-      <div className='flex flex-col space-y-4'>
-        <div className='flex flex-col text-zinc-700'>
-          <div className='space-y-1'>
-            <div>Project_Proposal.pdf</div>
-            <div>Meeting_Notes.docx</div>
-            <div>Financial_Report.xls</div>
-          </div>
-        </div>
-        <button
-          className='relative h-8 w-full scale-100 select-none appearance-none items-center justify-center rounded-lg border border-zinc-950/10 px-2 text-sm text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-800 focus-visible:ring-2 active:scale-[0.98]'
-          type='button'
-        >
-          Manage documents
-        </button>
-      </div>
-    ),
+    icon: <Database size={32} />,
+    href: '/collection',
   },
   {
     id: 4,
     label: 'Browse',
-    title: <LayoutGrid size={32} />,
+    icon: <LayoutGrid size={32} />,
     content: (
       <div className='flex flex-col space-y-4'>
         <div className='flex flex-col text-zinc-700'>
@@ -91,18 +60,39 @@ const ITEMS = [
   },
 ];
 
+const itemClasses =
+  'relative flex h-9 w-9 shrink-0 scale-100 select-none appearance-none items-center justify-center rounded-lg text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-800 focus-visible:ring-2 active:scale-[0.98]';
+const activeClasses = 'bg-zinc-100 text-zinc-800';
+
 export function MobileNavigation () {
+  const pathname = usePathname();
   const [active, setActive] = useState<number | null>(null);
   const [contentRef, { height: heightContent }] = useMeasure();
-  const [menuRef, { width: widthContainer }] = useMeasure();
   const ref = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [maxWidth, setMaxWidth] = useState(0);
 
-  useClickOutside(ref, () => {
+  const closePanel = useCallback(() => {
     setIsOpen(false);
     setActive(null);
-  });
+  }, []);
+
+  useClickOutside(ref, closePanel);
+
+  // Links: derived from the URL. Buttons: derived from which panel is open.
+  const isActive = (item: NavItem) =>
+    'href' in item
+      ? pathname === item.href || pathname.startsWith(`${item.href}/`)
+      : active === item.id;
+
+  const toggleItem = (id: number) => {
+    if (active === id) {
+      closePanel();
+      return;
+    }
+
+    setIsOpen(true);
+    setActive(id);
+  };
 
   return (
     <MotionConfig transition={transition}>
@@ -116,12 +106,12 @@ export function MobileNavigation () {
                   initial={{ height: 0 }}
                   animate={{ height: heightContent || 0 }}
                   exit={{ height: 0 }}
-                  style={{
-                    width: maxWidth,
-                  }}
                 >
                   <div ref={contentRef} className='p-2'>
                     {ITEMS.map((item) => {
+                      // Links have no panel content
+                      if (!('content' in item)) return null;
+
                       const isSelected = active === item.id;
 
                       return (
@@ -147,33 +137,32 @@ export function MobileNavigation () {
               ) : null}
             </AnimatePresence>
           </div>
-          <div className='flex space-x-2 p-2 justify-center' ref={menuRef}>
-            {ITEMS.map((item) => (
-              <button
-                key={item.id}
-                aria-label={item.label}
-                className={cn(
-                  'relative flex h-9 w-9 shrink-0 scale-100 select-none appearance-none items-center justify-center rounded-lg text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-800 focus-visible:ring-2 active:scale-[0.98]',
-                  active === item.id ? 'bg-zinc-100 text-zinc-800' : ''
-                )}
-                type='button'
-                onClick={() => {
-                  if (!isOpen) {
-                    setMaxWidth(widthContainer); // panel is closed, so this is the icon row's natural width
-                    setIsOpen(true);
-                  }
-                  if (active === item.id) {
-                    setIsOpen(false);
-                    setActive(null);
-                    return;
-                  }
-
-                  setActive(item.id);
-                }}
-              >
-                {item.title}
-              </button>
-            ))}
+          <div className='flex space-x-2 p-2 justify-center'>
+            {ITEMS.map((item) =>
+              'href' in item ? (
+                <Link
+                  key={item.id}
+                  href={item.href}
+                  aria-label={item.label}
+                  aria-current={isActive(item) ? 'page' : undefined}
+                  className={cn(itemClasses, isActive(item) && activeClasses)}
+                  onClick={closePanel}
+                >
+                  {item.icon}
+                </Link>
+              ) : (
+                <button
+                  key={item.id}
+                  aria-label={item.label}
+                  aria-expanded={active === item.id}
+                  className={cn(itemClasses, isActive(item) && activeClasses)}
+                  type='button'
+                  onClick={() => toggleItem(item.id)}
+                >
+                  {item.icon}
+                </button>
+              )
+            )}
           </div>
         </div>
       </div>
