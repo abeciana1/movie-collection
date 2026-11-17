@@ -20,6 +20,7 @@ import CrimeImg from "@/public/crime.webp"
 import BiographyImg from "@/public/biography.webp"
 import SportImg from "@/public/sports.webp"
 import { GenreCard } from "./GenreCard"
+import { genreSection } from "./GenreSection.variants"
 
 const genreImages = [
   { name: "Action", image: ActionImg },
@@ -47,7 +48,7 @@ const genreImages = [
 
 export const GenreSection = () => {
   return (
-    <section>
+    <section className={genreSection}>
       {genreImages.map(({ name, image }) => {
         console.log({ image })
         return (
