@@ -1,1 +1,1 @@
-export const genreSection = "flex py-6"
+export const genreSection = "flex py-6 gap-3 overflow-x-auto";
