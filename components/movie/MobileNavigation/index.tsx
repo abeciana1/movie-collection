@@ -24,25 +24,25 @@ const ITEMS: NavItem[] = [
   {
     id: 1,
     label: 'Home',
-    icon: <House size={32} />,
+    icon: <House size={28} />,
     href: '/home',
   },
   {
     id: 2,
     label: 'Watchlist',
-    icon: <Bookmark size={32} />,
+    icon: <Bookmark size={28} />,
     href: '/watchlist',
   },
   {
     id: 3,
     label: 'Collection',
-    icon: <Database size={32} />,
+    icon: <Database size={28} />,
     href: '/collection',
   },
   {
     id: 4,
     label: 'Browse',
-    icon: <LayoutGrid size={32} />,
+    icon: <LayoutGrid size={28} />,
     content: (
       <div className='flex flex-col space-y-4'>
         <div className='flex flex-col text-zinc-700'>
@@ -61,7 +61,7 @@ const ITEMS: NavItem[] = [
 ];
 
 const itemClasses =
-  'relative flex h-9 w-9 shrink-0 scale-100 select-none appearance-none items-center justify-center rounded-lg text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-800 focus-visible:ring-2 active:scale-[0.98]';
+  'relative flex flex-col p-1 shrink-0 scale-100 select-none appearance-none items-center justify-center rounded-lg text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-800 focus-visible:ring-2 active:scale-[0.98]';
 const activeClasses = 'bg-zinc-100 text-zinc-800';
 
 export function MobileNavigation () {
@@ -96,7 +96,7 @@ export function MobileNavigation () {
 
   return (
     <MotionConfig transition={transition}>
-      <div className='absolute inset-x-0 bottom-0' ref={ref}>
+      <div className='sticky inset-x-0 bottom-0' ref={ref}>
         <div className='h-full w-full border-t-2 border-t-foreground bg-background'>
           <div className='overflow-hidden'>
             <AnimatePresence initial={false} mode='sync'>
@@ -137,7 +137,7 @@ export function MobileNavigation () {
               ) : null}
             </AnimatePresence>
           </div>
-          <div className='flex space-x-2 p-2 justify-center'>
+          <div className='flex space-x-2 p-2 justify-around'>
             {ITEMS.map((item) =>
               'href' in item ? (
                 <Link
@@ -149,6 +149,7 @@ export function MobileNavigation () {
                   onClick={closePanel}
                 >
                   {item.icon}
+                  {item.label}
                 </Link>
               ) : (
                 <button
@@ -160,6 +161,7 @@ export function MobileNavigation () {
                   onClick={() => toggleItem(item.id)}
                 >
                   {item.icon}
+                  {item.label}
                 </button>
               )
             )}
