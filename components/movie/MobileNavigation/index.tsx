@@ -4,7 +4,7 @@ import useMeasure from 'react-use-measure';
 import { AnimatePresence, motion, MotionConfig, type Transition } from 'motion/react';
 import { cn } from '@/lib/utils';
 import useClickOutside from "@/hooks/useClickOutside"
-import { Folder, MessageCircle, User, WalletCards } from 'lucide-react';
+import { House, Bookmark, Database, LayoutGrid } from "lucide-react";
 
 const transition: Transition = {
   type: 'spring',
@@ -15,8 +15,8 @@ const transition: Transition = {
 const ITEMS = [
   {
     id: 1,
-    label: 'User',
-    title: <User size={32} />,
+    label: 'Home',
+    title: <House size={32} />,
     content: (
       <div className='flex flex-col space-y-4'>
         <div className='flex flex-col space-y-1 text-zinc-700'>
@@ -34,8 +34,8 @@ const ITEMS = [
   },
   {
     id: 2,
-    label: 'Messages',
-    title: <MessageCircle size={32} />,
+    label: 'Watchlist',
+    title: <Bookmark size={32} />,
     content: (
       <div className='flex flex-col space-y-4'>
         <div className='text-zinc-700'>You have 3 new messages.</div>
@@ -50,8 +50,8 @@ const ITEMS = [
   },
   {
     id: 3,
-    label: 'Documents',
-    title: <Folder size={32} />,
+    label: 'Collection',
+    title: <Database size={32} />,
     content: (
       <div className='flex flex-col space-y-4'>
         <div className='flex flex-col text-zinc-700'>
@@ -72,8 +72,8 @@ const ITEMS = [
   },
   {
     id: 4,
-    label: 'Wallet',
-    title: <WalletCards size={32} />,
+    label: 'Browse',
+    title: <LayoutGrid size={32} />,
     content: (
       <div className='flex flex-col space-y-4'>
         <div className='flex flex-col text-zinc-700'>
