@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import useMeasure from 'react-use-measure';
 import { AnimatePresence, motion, MotionConfig, type Transition } from 'motion/react';
 import { cn } from '@/lib/utils';
@@ -16,7 +16,7 @@ const ITEMS = [
   {
     id: 1,
     label: 'User',
-    title: <User className='h-5 w-5' />,
+    title: <User size={32} />,
     content: (
       <div className='flex flex-col space-y-4'>
         <div className='flex flex-col space-y-1 text-zinc-700'>
@@ -35,7 +35,7 @@ const ITEMS = [
   {
     id: 2,
     label: 'Messages',
-    title: <MessageCircle className='h-5 w-5' />,
+    title: <MessageCircle size={32} />,
     content: (
       <div className='flex flex-col space-y-4'>
         <div className='text-zinc-700'>You have 3 new messages.</div>
@@ -51,7 +51,7 @@ const ITEMS = [
   {
     id: 3,
     label: 'Documents',
-    title: <Folder className='h-5 w-5' />,
+    title: <Folder size={32} />,
     content: (
       <div className='flex flex-col space-y-4'>
         <div className='flex flex-col text-zinc-700'>
@@ -73,7 +73,7 @@ const ITEMS = [
   {
     id: 4,
     label: 'Wallet',
-    title: <WalletCards className='h-5 w-5' />,
+    title: <WalletCards size={32} />,
     content: (
       <div className='flex flex-col space-y-4'>
         <div className='flex flex-col text-zinc-700'>
