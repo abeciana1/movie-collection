@@ -50,7 +50,6 @@ export const GenreSection = () => {
   return (
     <section className={genreSection}>
       {genreImages.map(({ name, image }) => {
-        console.log({ image })
         return (
           <GenreCard key={name} name={name} image={image} />
         )
