@@ -106,7 +106,7 @@ export function MobileNavigation () {
 
   return (
     <MotionConfig transition={transition}>
-      <div className='absolute bottom-8' ref={ref}>
+      <div className='absolute bottom-0' ref={ref}>
         <div className='h-full w-full rounded-xl border border-zinc-950/10 bg-white'>
           <div className='overflow-hidden'>
             <AnimatePresence initial={false} mode='sync'>
