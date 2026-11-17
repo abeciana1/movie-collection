@@ -147,7 +147,7 @@ export function MobileNavigation () {
               ) : null}
             </AnimatePresence>
           </div>
-          <div className='flex space-x-2 p-2' ref={menuRef}>
+          <div className='flex space-x-2 p-2 justify-center' ref={menuRef}>
             {ITEMS.map((item) => (
               <button
                 key={item.id}
