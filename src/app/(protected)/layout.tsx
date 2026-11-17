@@ -14,7 +14,7 @@ export default function ProtectedLayout({ children }: LayoutProps<"/">) {
       <div className="flex gap-6">
         <SidebarNavigation/>
         <main className="min-w-0 flex-1">
-          <div className="mx-auto w-full max-w-wide">
+          <div className="mx-auto w-full max-w-wide px-4 md:px-5 lg:pl-0 lg:pr-5">
             {children}
           </div>
         </main>

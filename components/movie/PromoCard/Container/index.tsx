@@ -27,7 +27,7 @@ export const PromoCardContainer = ({
   return (
     <div className={cn(cardContainer)}>
       <Card className={cn(cardOverride({ addBorder }))}>
-        <CardContent className="p-0">
+        <CardContent className="flex flex-1 flex-col p-0">
           <div className={cn(cardContentInner)}>
             {backgroundImage && (
               <>

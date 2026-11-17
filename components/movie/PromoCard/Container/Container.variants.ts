@@ -14,7 +14,8 @@ export const cardOverride = cva("w-full overflow-hidden p-0", {
   },
 })
 
-export const cardContentInner = "relative flex min-h-80 flex-col justify-center p-6 md:min-h-96";
+export const cardContentInner =
+  "relative flex min-h-80 flex-1 flex-col justify-center p-6 md:min-h-[34rem]";
 
 export const cardBackgroundImage = cva("absolute inset-0", {
   variants: {
