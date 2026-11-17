@@ -8,7 +8,7 @@ const HomePage = async () => {
 
   return (
     <>
-      <section className="flex gap-6">
+      <section className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
         <AddCard />
         {collection && collection.length < 1 && <EmptyCard />}
         {collection && collection.length > 0 && <EmptyCard />}
