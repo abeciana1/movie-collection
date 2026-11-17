@@ -2,6 +2,7 @@ import HeaderBar from "@/components/movie/Navigation/HeaderBar";
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { SidebarNavigation } from "@/components/movie/SidebarNavigation";
+import { MobileNavigation } from "@/components/movie/MobileNavigation";
 
 export const metadata: Metadata = {
   title: "Reelhouse",
@@ -19,6 +20,7 @@ export default function ProtectedLayout({ children }: LayoutProps<"/">) {
           </div>
         </main>
       </div>
+      <MobileNavigation />
     </ThemeProvider>
   );
 }
