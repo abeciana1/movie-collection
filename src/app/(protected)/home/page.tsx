@@ -8,7 +8,7 @@ const HomePage = async () => {
 
   return (
     <>
-      <section className="flex gap-6 pr-4 md:pr-5">
+      <section className="flex gap-6">
         <AddCard />
         {collection && collection.length < 1 && <EmptyCard />}
         {collection && collection.length > 0 && <EmptyCard />}
