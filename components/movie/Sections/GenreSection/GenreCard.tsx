@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { genreCard } from "./GenreCard.variants";
+import { genreCard, genreCardImage } from "./GenreCard.variants";
 
 interface GenreCardProps {
   name: string;
@@ -13,9 +13,21 @@ interface GenreCardProps {
 
 export const GenreCard = ({ name, image }: GenreCardProps) => {
   return (
-    <Link href={`/genre/${name.toLowerCase()}`} className={genreCard}>  
-      <Image src={image.src} alt={name} width={178} height={100} />
+    <Link
+      href={`/genre/${name.toLowerCase()}`}
+      className={genreCard}
+    >
+      <div className={genreCardImage}>
+        <Image
+          src={image.src}
+          alt={name}
+          width={178}
+          height={100}
+          className="h-full w-full object-cover"
+        />
+      </div>
+
       <div>{name}</div>
     </Link>
   );
-}
+};
