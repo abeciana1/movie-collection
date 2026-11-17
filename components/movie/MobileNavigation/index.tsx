@@ -60,9 +60,11 @@ const ITEMS: NavItem[] = [
   },
 ];
 
+// Each item takes an equal share of the bar (flex-1) so the whole cell is the tap target.
 const itemClasses =
-  'relative flex flex-col p-1 shrink-0 scale-100 select-none appearance-none items-center justify-center rounded-lg text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-800 focus-visible:ring-2 active:scale-[0.98]';
-const activeClasses = 'bg-zinc-100 text-zinc-800';
+  'relative flex flex-1 flex-col items-center justify-center gap-1 py-2 scale-100 select-none appearance-none rounded-lg text-foreground transition-colors focus-visible:ring-2 active:scale-[0.98]';
+// Active = accent color + solid icon (fill-current fills the svg with the text color).
+const activeClasses = 'text-orange-600 [&_svg]:fill-current';
 
 export function MobileNavigation () {
   const pathname = usePathname();
@@ -137,7 +139,7 @@ export function MobileNavigation () {
               ) : null}
             </AnimatePresence>
           </div>
-          <div className='flex space-x-2 p-2 justify-around'>
+          <div className='flex'>
             {ITEMS.map((item) =>
               'href' in item ? (
                 <Link
@@ -149,7 +151,7 @@ export function MobileNavigation () {
                   onClick={closePanel}
                 >
                   {item.icon}
-                  {item.label}
+                  <span className='text-xs font-medium'>{item.label}</span>
                 </Link>
               ) : (
                 <button
@@ -161,7 +163,7 @@ export function MobileNavigation () {
                   onClick={() => toggleItem(item.id)}
                 >
                   {item.icon}
-                  {item.label}
+                  <span className='text-xs font-medium'>{item.label}</span>
                 </button>
               )
             )}
