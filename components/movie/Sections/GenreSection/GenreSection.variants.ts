@@ -1,1 +1,1 @@
-export const genreSection = "flex"
+export const genreSection = "flex py-6"
