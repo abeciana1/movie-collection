@@ -19,6 +19,7 @@ import HistoryImg from "@/public/history.webp"
 import CrimeImg from "@/public/crime.webp"
 import BiographyImg from "@/public/biography.webp"
 import SportImg from "@/public/sport.webp"
+import { GenreCard } from "./GenreCard"
 
 const genreImages = [
   { name: "Action", image: ActionImg },
