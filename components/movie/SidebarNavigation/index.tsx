@@ -1,6 +1,6 @@
 import { type SidebarLinkProps, SidebarLink } from "./SidebarLink";
 import { House, Bookmark, Database, LayoutGrid } from "lucide-react";
-import { sidebarNavigation } from "./SidebarNavigation.variants";
+import { sidebarNavigation, sidebarNavigationAsideContainer } from "./SidebarNavigation.variants";
 
 const sidebarLinks: SidebarLinkProps[] = [
   {
@@ -28,7 +28,7 @@ const sidebarLinks: SidebarLinkProps[] = [
 
 export const SidebarNavigation = () => {
   return (
-    <aside>
+    <aside className={sidebarNavigationAsideContainer}>
       <nav className={sidebarNavigation}>
         <ul>
           {sidebarLinks.map((link) => (
