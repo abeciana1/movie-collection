@@ -21,7 +21,7 @@ export const SectionWrapper = ({
   children,
   title,
   description,
-  ctaLabel,
+  ctaLabel = "View all",
   ctaLink,
   ctaShowArrow = false,
 }: SectionWrapperProps): JSX.Element => {
