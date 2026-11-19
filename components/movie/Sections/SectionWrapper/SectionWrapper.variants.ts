@@ -14,6 +14,6 @@ export const sectionWrapperDescription = cva("text-md text-popover-foreground", 
   }
 })
 
-export const sectionWrapperLink = "flex items-center gap-2 text-md"
+export const sectionWrapperLink = "flex items-center gap-2 text-md font-semibold"
 
 export const sectionWrapperHeaderContainer = "flex items-center justify-between gap-4"
