@@ -54,6 +54,7 @@ export const GenreSection = () => {
       description="Browse movies by genre"
       ctaLabel="View all"
       ctaLink="/genres"
+      ctaShowArrow
     >
       <section className={genreSection}>
         {genreImages.map(({ name, image }) => {
