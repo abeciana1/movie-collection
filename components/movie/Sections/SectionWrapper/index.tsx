@@ -1,4 +1,5 @@
 import type { JSX, ReactNode } from "react";
+import { sectionWrapperDescription, sectionWrapperTitle } from "./SectionWrapper.variants";
 
 interface SectionWrapperProps {
   children: ReactNode | ReactNode[];
@@ -16,12 +17,12 @@ export const SectionWrapper = ({
   ctaLabel,
   ctaLink,
   ctaShowArrow,
-}: SectionWrapperProps) => {
+}: SectionWrapperProps): JSX.Element => {
   return (
     <section>
-      <h2>{title}</h2>
-      <p>{description}</p>
-      <a href={ctaLink}>
+      <h2 className={sectionWrapperTitle}>{title}</h2>
+      <p className={sectionWrapperDescription}>{description}</p>
+      <a href={ctaLink} className="">
         {ctaLabel}
         {ctaShowArrow && <span> →</span>}
       </a>
