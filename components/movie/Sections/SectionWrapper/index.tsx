@@ -18,7 +18,7 @@ export const SectionWrapper = ({
   description,
   ctaLabel,
   ctaLink,
-  ctaShowArrow,
+  ctaShowArrow = false,
 }: SectionWrapperProps): JSX.Element => {
   return (
     <section>
