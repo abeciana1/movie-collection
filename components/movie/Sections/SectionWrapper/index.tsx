@@ -1,5 +1,10 @@
 import type { JSX, ReactNode } from "react";
-import { sectionWrapperDescription, sectionWrapperTitle, sectionWrapperLink } from "./SectionWrapper.variants";
+import {
+  sectionWrapperDescription,
+  sectionWrapperTitle,
+  sectionWrapperLink,
+  sectionWrapperHeaderContainer
+} from "./SectionWrapper.variants";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
@@ -22,7 +27,7 @@ export const SectionWrapper = ({
 }: SectionWrapperProps): JSX.Element => {
   return (
     <section className="py-6">
-      <div>
+      <div className={sectionWrapperHeaderContainer}>
         <h2 className={sectionWrapperTitle}>{title}</h2>
         <Link href={ctaLink} className={sectionWrapperLink}>
           {ctaLabel}
