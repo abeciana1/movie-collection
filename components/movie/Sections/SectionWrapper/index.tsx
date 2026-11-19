@@ -27,7 +27,7 @@ export const SectionWrapper = ({
 }: SectionWrapperProps): JSX.Element => {
   return (
     <section className="py-6">
-      <div className={sectionWrapperHeaderContainer}>
+      <div className={sectionWrapperHeaderContainer({ description: !!description })}>
         <h2 className={sectionWrapperTitle}>{title}</h2>
         <Link href={ctaLink} className={sectionWrapperLink}>
           {ctaLabel}
