@@ -47,7 +47,13 @@ const genreImages = [
   { name: "Sport", image: SportImg }
 ]
 
-export const GenreSection = () => {
+interface GenreSectionProps {
+  wrap?: boolean;
+}
+
+export const GenreSection = ({
+  wrap = false
+}: GenreSectionProps) => {
   return (
     <SectionWrapper
       title="Genres"
@@ -56,7 +62,7 @@ export const GenreSection = () => {
       ctaLink="/genres"
       ctaShowArrow
     >
-      <section className={genreSection}>
+      <section className={genreSection({ wrap })}>
         {genreImages.map(({ name, image }) => {
           return (
             <GenreCard key={name} name={name} image={image} />
