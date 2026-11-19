@@ -22,12 +22,14 @@ export const SectionWrapper = ({
 }: SectionWrapperProps): JSX.Element => {
   return (
     <section className="py-6">
-      <h2 className={sectionWrapperTitle}>{title}</h2>
+      <div>
+        <h2 className={sectionWrapperTitle}>{title}</h2>
+        <Link href={ctaLink} className={sectionWrapperLink}>
+          {ctaLabel}
+          {ctaShowArrow && <ArrowRight size={16} />}
+        </Link>
+      </div>
       <p className={sectionWrapperDescription}>{description}</p>
-      <Link href={ctaLink} className={sectionWrapperLink}>
-        {ctaLabel}
-        {ctaShowArrow && <ArrowRight size={16} />}
-      </Link>
       {children}
     </section>
   );
