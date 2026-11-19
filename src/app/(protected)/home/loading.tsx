@@ -3,9 +3,9 @@ import { Skeleton } from "@/components/ui/skeleton"
 
 export default function HomeLoading() {
   return (
-    <section className="flex gap-6 pr-4 md:pr-5">
+    <section className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
       <AddCard />
-      <Skeleton className="w-118.5 h-96" />
+      <Skeleton className="aspect-[3/2] w-full" />
     </section>
   );
 }

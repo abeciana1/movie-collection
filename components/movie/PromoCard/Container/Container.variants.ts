@@ -2,7 +2,7 @@ import { cva } from "class-variance-authority";
 
 export const cardContainer = "min-w-0 flex-1"
 
-export const cardOverride = cva("w-full overflow-hidden p-0", {
+export const cardOverride = cva("aspect-[3/2] min-h-0 w-full overflow-hidden p-0", {
   variants: {
     addBorder: {
       true: "",
@@ -15,7 +15,7 @@ export const cardOverride = cva("w-full overflow-hidden p-0", {
 })
 
 export const cardContentInner =
-  "relative flex min-h-80 flex-1 flex-col justify-center p-6 md:min-h-[34rem]";
+  "relative flex min-h-0 flex-1 flex-col justify-center p-6";
 
 export const cardBackgroundImage = cva("absolute inset-0", {
   variants: {
