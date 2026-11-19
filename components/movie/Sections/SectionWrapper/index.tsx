@@ -1,5 +1,6 @@
 import type { JSX, ReactNode } from "react";
 import { sectionWrapperDescription, sectionWrapperTitle } from "./SectionWrapper.variants";
+import { ArrowRight } from "lucide-react";
 
 interface SectionWrapperProps {
   children: ReactNode | ReactNode[];
@@ -24,7 +25,7 @@ export const SectionWrapper = ({
       <p className={sectionWrapperDescription}>{description}</p>
       <a href={ctaLink} className="">
         {ctaLabel}
-        {ctaShowArrow && <span> →</span>}
+        {ctaShowArrow && <ArrowRight size={16} />}
       </a>
       {children}
     </section>
