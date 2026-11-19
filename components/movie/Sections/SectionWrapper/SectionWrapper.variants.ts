@@ -5,7 +5,7 @@ export const sectionWrapperTitle = "font-bold text-xl";
 export const sectionWrapperDescription = cva("text-md text-popover-foreground", {
   variants: {
     description: {
-      true: "mb-6",
+      true: "mb-3",
       false: "",
     }
   },
