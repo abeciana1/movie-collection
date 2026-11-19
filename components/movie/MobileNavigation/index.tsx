@@ -98,7 +98,7 @@ export function MobileNavigation () {
 
   return (
     <MotionConfig transition={transition}>
-      <div className='sticky inset-x-0 bottom-0' ref={ref}>
+      <div className='sticky inset-x-0 bottom-0 lg:hidden' ref={ref}>
         <div className='h-full w-full border-t-2 border-t-foreground bg-background'>
           <div className='overflow-hidden'>
             <AnimatePresence initial={false} mode='sync'>
