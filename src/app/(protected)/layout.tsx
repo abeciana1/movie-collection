@@ -15,13 +15,15 @@ export default function ProtectedLayout({ children, fullWidth }: ProtectedLayout
       <HeaderBar />
       <div className="flex gap-6">
         <SidebarNavigation/>
-        <main className="min-w-0 flex-1 min-h-screen">
+        <main className="min-w-0 flex-1">
           <div className="mx-auto w-full max-w-wide px-4 md:px-5 lg:pl-0 lg:pr-5">
             {children}
           </div>
         </main>
       </div>
-      {fullWidth}
+      <div className="mx-auto w-full max-w-wide px-4 md:px-5 lg:pr-5">
+        {fullWidth}
+      </div>
       <MobileNavigation />
     </ThemeProvider>
   );
