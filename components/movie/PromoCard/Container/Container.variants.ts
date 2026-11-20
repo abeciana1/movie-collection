@@ -1,8 +1,8 @@
 import { cva } from "class-variance-authority";
 
-export const cardContainer = "min-w-0 flex-1"
+export const cardContainer = "grid min-w-0 flex-1 [&>div]:w-full"
 
-export const cardOverride = cva("aspect-[3/2] min-h-0 w-full overflow-hidden p-0", {
+export const cardOverride = cva("xl:aspect-[3/2] min-h-0 w-full overflow-hidden p-0", {
   variants: {
     addBorder: {
       true: "",
