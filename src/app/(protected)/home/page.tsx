@@ -1,7 +1,6 @@
 import { AddCard } from "@/components/movie/PromoCard/AddCard";
 import { EmptyCard } from "@/components/movie/PromoCard/EmptyCard";
 import { getCollection } from "@/lib/queries/getCollection";
-import { GenreSection } from "@/components/movie/Sections/GenreSection"
 
 const HomePage = async () => {
   const collection = await getCollection();
@@ -13,7 +12,6 @@ const HomePage = async () => {
         {collection && collection.length < 1 && <EmptyCard />}
         {collection && collection.length > 0 && <EmptyCard />}
       </section>
-      <GenreSection />
     </>
   )
 }
