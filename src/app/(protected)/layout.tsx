@@ -3,12 +3,13 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { SidebarNavigation } from "@/components/movie/SidebarNavigation";
 import { MobileNavigation } from "@/components/movie/MobileNavigation";
+import type { ProtectedLayoutProps } from "@/types/general";
 
 export const metadata: Metadata = {
   title: "Reelhouse",
 };
 
-export default function ProtectedLayout({ children }: LayoutProps<"/">) {
+export default function ProtectedLayout({ children, fullWidth }: ProtectedLayoutProps) {
   return (
     <ThemeProvider>
       <HeaderBar />
@@ -20,6 +21,7 @@ export default function ProtectedLayout({ children }: LayoutProps<"/">) {
           </div>
         </main>
       </div>
+      {fullWidth}
       <MobileNavigation />
     </ThemeProvider>
   );
