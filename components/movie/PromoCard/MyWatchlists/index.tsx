@@ -1,6 +1,11 @@
+import type { JSX } from "react";
 import { SectionWrapper } from "@/components/movie/Sections/SectionWrapper";
 
-export const MyWatchlistsCard = () => {
+interface MyWatchlistsCardProps {
+  empty: boolean;
+}
+
+export const MyWatchlistsCard = ({ empty }: MyWatchlistsCardProps): JSX.Element => {
   return (
     <SectionWrapper
       title="My Watchlists"
