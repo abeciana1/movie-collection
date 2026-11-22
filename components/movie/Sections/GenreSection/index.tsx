@@ -21,6 +21,7 @@ import BiographyImg from "@/public/biography.webp"
 import SportImg from "@/public/sports.webp"
 import { GenreCard } from "./GenreCard"
 import { genreSection } from "./GenreSection.variants"
+import { SectionWrapper } from "@/components/movie/Sections/SectionWrapper"
 
 const genreImages = [
   { name: "Action", image: ActionImg },
@@ -46,14 +47,28 @@ const genreImages = [
   { name: "Sport", image: SportImg }
 ]
 
-export const GenreSection = () => {
+interface GenreSectionProps {
+  wrap?: boolean;
+}
+
+export const GenreSection = ({
+  wrap = false
+}: GenreSectionProps) => {
   return (
-    <section className={genreSection}>
-      {genreImages.map(({ name, image }) => {
-        return (
-          <GenreCard key={name} name={name} image={image} />
-        )
-      })}
-    </section>
+    <SectionWrapper
+      title="Genres"
+      description="Browse movies by genre"
+      ctaLabel="View all"
+      ctaLink="/genres"
+      ctaShowArrow
+    >
+      <section className={genreSection({ wrap })}>
+        {genreImages.map(({ name, image }) => {
+          return (
+            <GenreCard key={name} name={name} image={image} />
+          )
+        })}
+      </section>
+    </SectionWrapper>
   )
 }

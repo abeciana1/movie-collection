@@ -1,0 +1,44 @@
+import type { JSX, ReactNode } from "react";
+import {
+  sectionWrapperDescription,
+  sectionWrapperTitle,
+  sectionWrapperLink,
+  sectionWrapperHeaderContainer,
+  sectionWrapperContainer
+} from "./SectionWrapper.variants";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+
+interface SectionWrapperProps {
+  children: ReactNode | ReactNode[];
+  title: string;
+  description?: string;
+  ctaLabel: string;
+  ctaLink: string;
+  ctaShowArrow?: boolean;
+}
+
+export const SectionWrapper = ({
+  children,
+  title,
+  description = "",
+  ctaLabel = "View all",
+  ctaLink,
+  ctaShowArrow = false,
+}: SectionWrapperProps): JSX.Element => {
+  return (
+    <section className={sectionWrapperContainer}>
+      <div className={sectionWrapperHeaderContainer}>
+        <h2 className={sectionWrapperTitle}>{title}</h2>
+        {ctaLink && (
+          <Link href={ctaLink} className={sectionWrapperLink}>
+            {ctaLabel}
+            {ctaShowArrow && <ArrowRight size={16} />}
+          </Link>
+        )}
+      </div>
+      {description && <p className={sectionWrapperDescription({ description: !!description })}>{description}</p>} 
+      {children}
+    </section>
+  );
+};
