@@ -26,7 +26,7 @@ export const PromoCardContainer = ({
 }: PromoCardContainerProps) => {
   return (
     <div className={cn(cardContainer)}>
-      <Card className={cn(cardOverride({ addBorder }))}>
+      <Card className={cn(cardOverride({ addBorder }), "bg-popover border-loading shadow-none rounded-lg")}>
         <CardContent className="flex min-h-0 flex-1 flex-col p-0">
           <div className={cn(cardContentInner)}>
             {backgroundImage && (
