@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { SidebarNavigation } from "@/components/movie/SidebarNavigation";
 import { MobileNavigation } from "@/components/movie/MobileNavigation";
-import type { ProtectedLayoutProps } from "@/types/general";
 
 export const metadata: Metadata = {
   title: "Reelhouse",
