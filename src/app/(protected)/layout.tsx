@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Reelhouse",
 };
 
-export default function ProtectedLayout({ children, fullWidth }: ProtectedLayoutProps) {
+export default function ProtectedLayout({ children, fullWidth }: LayoutProps<"/">) {
   return (
     <ThemeProvider>
       <HeaderBar />
