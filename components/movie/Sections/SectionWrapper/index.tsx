@@ -12,7 +12,7 @@ import Link from "next/link";
 interface SectionWrapperProps {
   children: ReactNode | ReactNode[];
   title: string;
-  description: string;
+  description?: string;
   ctaLabel: string;
   ctaLink: string;
   ctaShowArrow?: boolean;
@@ -21,7 +21,7 @@ interface SectionWrapperProps {
 export const SectionWrapper = ({
   children,
   title,
-  description,
+  description = "",
   ctaLabel = "View all",
   ctaLink,
   ctaShowArrow = false,
@@ -37,7 +37,7 @@ export const SectionWrapper = ({
           </Link>
         )}
       </div>
-      <p className={sectionWrapperDescription({ description: !!description })}>{description}</p>
+      {description && <p className={sectionWrapperDescription({ description: !!description })}>{description}</p>} 
       {children}
     </section>
   );
