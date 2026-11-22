@@ -3,7 +3,8 @@ import {
   sectionWrapperDescription,
   sectionWrapperTitle,
   sectionWrapperLink,
-  sectionWrapperHeaderContainer
+  sectionWrapperHeaderContainer,
+  sectionWrapperContainer
 } from "./SectionWrapper.variants";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -26,7 +27,7 @@ export const SectionWrapper = ({
   ctaShowArrow = false,
 }: SectionWrapperProps): JSX.Element => {
   return (
-    <section className="py-6">
+    <section className={sectionWrapperContainer}>
       <div className={sectionWrapperHeaderContainer}>
         <h2 className={sectionWrapperTitle}>{title}</h2>
         {ctaLink && (
