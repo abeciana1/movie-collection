@@ -17,8 +17,8 @@ const tmdbBasePathListings = "/3/";
 export const API_EXTERNAL = {
   tmdb: {
     getBaseUrl: (): string | undefined =>
-      process.env.NEXT_PUBLIC_TMDB_API_KEY_URL || process.env.TMDB_API_KEY_URL,
-    envVarName: "NEXT_PUBLIC_TMDB_API_KEY_URL",
+      process.env.TMDB_API_KEY_URL,
+    envVarName: "TMDB_API_KEY_URL",
     basePath: tmdbBasePathListings,
     endpoints: {
       search: {
@@ -44,7 +44,7 @@ export function getApiExternalBaseUrl(api: ApiExternalName): string {
 
   if (!baseUrl) {
     throw new Error(
-      `[cms-contentful] Missing required environment variable: ${envVarName}`
+      `[api-external-movie] Missing required environment variable: ${envVarName}`
     );
   }
 
