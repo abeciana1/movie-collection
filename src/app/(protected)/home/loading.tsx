@@ -1,11 +1,15 @@
 import { AddCard } from "@/components/movie/PromoCard/AddCard";
 import { Skeleton } from "@/components/ui/skeleton"
+import { GenreSection } from "@/components/movie/Sections/GenreSection"
 
 export default function HomeLoading() {
   return (
-    <section className="flex gap-6 pr-4 md:pr-5">
-      <AddCard />
-      <Skeleton className="w-118.5 h-96" />
-    </section>
+    <>
+      <section className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
+        <AddCard />
+        <Skeleton className="aspect-[3/2] w-full" />
+      </section>
+      <GenreSection/>
+    </>
   );
 }

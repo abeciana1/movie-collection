@@ -2,12 +2,13 @@ import HeaderBar from "@/components/movie/Navigation/HeaderBar";
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { SidebarNavigation } from "@/components/movie/SidebarNavigation";
+import { MobileNavigation } from "@/components/movie/MobileNavigation";
 
 export const metadata: Metadata = {
   title: "Reelhouse",
 };
 
-export default function ProtectedLayout({ children }: LayoutProps<"/">) {
+export default function ProtectedLayout({ children, fullWidth }: LayoutProps<"/">) {
   return (
     <ThemeProvider>
       <HeaderBar />
@@ -19,6 +20,10 @@ export default function ProtectedLayout({ children }: LayoutProps<"/">) {
           </div>
         </main>
       </div>
+      <div className="mx-auto w-full max-w-wide px-4 md:px-5 lg:pr-5">
+        {fullWidth}
+      </div>
+      <MobileNavigation />
     </ThemeProvider>
   );
 }
