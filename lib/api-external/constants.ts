@@ -11,20 +11,17 @@ interface ApiExternalConfig {
   endpoints: Record<string, string | Record<string, string>>;
 }
 
-// The Movie Database: shared prefixes per resource, endpoints grouped under them
-const tmdbBasePathListings = "/3/";
-
 export const API_EXTERNAL = {
   tmdb: {
     getBaseUrl: (): string | undefined =>
       process.env.TMDB_API_KEY_URL,
     envVarName: "TMDB_API_KEY_URL",
-    basePath: tmdbBasePathListings,
+    basePath: "/3/",
     endpoints: {
       search: {
-        movie: `${tmdbBasePathListings}search/movie`,
-        tv: `${tmdbBasePathListings}search/tv`,
-        multi: `${tmdbBasePathListings}search/multi`,
+        movie: "search/movie",
+        tv: "search/tv",
+        multi: "search/multi",
       }
     }
   }
@@ -44,7 +41,7 @@ export function getApiExternalBaseUrl(api: ApiExternalName): string {
 
   if (!baseUrl) {
     throw new Error(
-      `[api-external-movie] Missing required environment variable: ${envVarName}`
+      `[api-external] Missing required environment variable: ${envVarName}`
     );
   }
 
