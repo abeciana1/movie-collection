@@ -1,22 +1,21 @@
 import type { ApiFetchOptions, HttpMethod } from "@/types/api";
+import { readResponse } from "../api-external/readResponse";
 
-export function createApiClient(baseUrl: string, defaultHeaders: HeadersInit = {}) {
+export function createApiClient(baseUrl: string | (() => string), defaultHeaders: HeadersInit | (() => HeadersInit) = {}) {
   const apiFetch = async function <TResponse>(
     method: HttpMethod,
     path: string,
     options: ApiFetchOptions = {},
   ): Promise<TResponse> {
     const { params, json, headers, next, ...rest } = options;
-    const url = new URL(path, baseUrl);
-    if (params) {
-      Object.entries(params).forEach(([key, value]) => {
-        if (value !== undefined) url.searchParams.set(key, String(value));
-      });
-    }
-    const res = await fetch(url.toString(), {
+    const base = typeof baseUrl === "function" ? baseUrl() : baseUrl;
+    const baseHeaders = typeof defaultHeaders === "function" ? defaultHeaders() : defaultHeaders;
+
+    const url = buildUrl(base, path, params);
+    const res = await fetch(url, {
       ...rest,
       method,
-      headers: { "Content-Type": "application/json", ...defaultHeaders, ...(headers || {}) },
+      headers: { "Content-Type": "application/json", ...baseHeaders, ...(headers || {}) },
       body: json !== undefined ? JSON.stringify(json) : undefined,
       next,
     });
@@ -25,7 +24,7 @@ export function createApiClient(baseUrl: string, defaultHeaders: HeadersInit = {
       throw new Error(`API ${res.status} ${res.statusText}: ${text}`);
     }
     if (res.status === 204) return undefined as TResponse;
-    return (await res.json()) as TResponse;
+    return (await readResponse(res)) as TResponse;
   };
 
   return {
@@ -44,12 +43,30 @@ export function createApiClient(baseUrl: string, defaultHeaders: HeadersInit = {
 
 type QueryParamValue = string | number | boolean | null | undefined;
 
-export const buildUrl = (baseUrl: string, path: string, params?: Record<string, QueryParamValue>) => {
-  const url = new URL(path, baseUrl);
+// Never fetched. It only lets `URL` parse a relative (same-origin) base like "/api/movie".
+const PLACEHOLDER_ORIGIN = "http://placeholder.invalid";
+
+export const buildUrl = (
+  baseUrl: string,
+  path: string,
+  params?: Record<string, QueryParamValue>
+): string => {
+  const isAbsolute = /^https?:\/\//i.test(baseUrl);
+  const base = `${baseUrl.replace(/\/+$/, "")}/`; // exactly one trailing slash
+  const relativePath = path.replace(/^\/+/, ""); // no leading slash
+  const url = new URL(
+    relativePath,
+    isAbsolute ? base : `${PLACEHOLDER_ORIGIN}${base}`
+  );
+
   if (params) {
     Object.entries(params).forEach(([key, value]) => {
-      if (value !== undefined && value !== null) url.searchParams.set(key, String(value));
+      if (value !== undefined && value !== null) {
+        url.searchParams.set(key, String(value));
+      }
     });
   }
-  return url.toString();
+
+  // Absolute base (TMDB, UPC): full URL. Relative base (your own routes): path + query.
+  return isAbsolute ? url.toString() : `${url.pathname}${url.search}`;
 };
