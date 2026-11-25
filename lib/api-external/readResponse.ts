@@ -27,6 +27,11 @@ function readErrorMessage(json: unknown, fallback: string): string {
 
 // Returns the parsed body as `unknown` so callers validate it.
 export async function readResponse(response: Response): Promise<unknown> {
+
+  if (response.status === 204) {
+    return undefined;
+  }
+
   const fallback = response.statusText || `http_${response.status}`;
 
   // Error bodies may not be JSON, so a parse failure must not hide the status.
