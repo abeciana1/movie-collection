@@ -1,20 +1,22 @@
+import "server-only"; // the base URL and token must never reach a client bundle
+
 // Registry of external (non-Contentful) APIs.
 // Add a new API as a new entry: its own base URL and its own endpoints.
 
-// `process.env.NEXT_PUBLIC_*` must be referenced statically so Next.js can
-// inline it into client bundles, so each API reads its own variable here.
+// Env vars are read through a getter so a missing one fails when a request
+// is made, not when this module is imported.
 interface ApiExternalConfig {
   getBaseUrl: () => string | undefined;
   envVarName: string;
-  // Prefix shared by every endpoint of this API (e.g. a version)
+  // Prefix shared by every endpoint of this API (e.g. a version). Must start with "/".
   basePath?: string;
+  // Paths relative to `basePath`: no leading slash.
   endpoints: Record<string, string | Record<string, string>>;
 }
 
 export const API_EXTERNAL = {
   tmdb: {
-    getBaseUrl: (): string | undefined =>
-      process.env.TMDB_API_KEY_URL,
+    getBaseUrl: (): string | undefined => process.env.TMDB_API_KEY_URL,
     envVarName: "TMDB_API_KEY_URL",
     basePath: "/3/",
     endpoints: {
@@ -22,9 +24,9 @@ export const API_EXTERNAL = {
         movie: "search/movie",
         tv: "search/tv",
         multi: "search/multi",
-      }
-    }
-  }
+      },
+    },
+  },
 } as const satisfies Record<string, ApiExternalConfig>;
 
 export type ApiExternalName = keyof typeof API_EXTERNAL;
