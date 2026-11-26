@@ -19,11 +19,6 @@ export function createApiClient(baseUrl: string | (() => string), defaultHeaders
       body: json !== undefined ? JSON.stringify(json) : undefined,
       next,
     });
-    if (!res.ok) {
-      const text = await res.text().catch(() => "");
-      throw new Error(`API ${res.status} ${res.statusText}: ${text}`);
-    }
-    if (res.status === 204) return undefined as TResponse;
     return (await readResponse(res)) as TResponse;
   };
 
