@@ -14,9 +14,12 @@ import { Search } from "lucide-react";
 import useMovieSearch from "@/hooks/movie/useMovieSearch"
 import { useState } from "react"
 import logger from "@/lib/helpers/logger"
+import { Popover, PopoverContent, PopoverHeader, PopoverTitle } from "@/components/ui/popover"
+import type { SearchResult } from "@/types/api-response/movie"
 
 export const SearchForm = () => {
   const [ searchQuery, setSearchQuery ] = useState<string>("")
+  const [ openResults, setOpenResults ] = useState<boolean>(false);
   const { data, error, isLoading } = useMovieSearch(searchQuery);
 
   logger("log", "Search query:", searchQuery);
@@ -57,3 +60,28 @@ export const SearchForm = () => {
     </search>
   );
 };
+
+interface SearchFormResultsProps {
+  resultsLength: number;
+  openResults: boolean;
+  results: Pick<SearchResult, "joint">;
+  searchQuery: string;
+}
+
+export const SearchFormResults = ({
+  resultsLength,
+  // openResults,
+  // results,
+  searchQuery
+}: SearchFormResultsProps) => {
+  return (
+    <Popover>
+      <PopoverContent>
+        <PopoverHeader>
+          <PopoverTitle>Search Results for: {searchQuery}</PopoverTitle>
+          <p>{resultsLength} results found</p>
+        </PopoverHeader>
+      </PopoverContent>
+    </Popover>
+  )
+}
