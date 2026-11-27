@@ -11,8 +11,17 @@ import {
   searchInput,
 } from "./SearchFrom.variants";
 import { Search } from "lucide-react";
+import useMovieSearch from "@/hooks/movie/useMovieSearch"
+import { useState } from "react"
 
 export const SearchForm = () => {
+  const [ searchQuery, setSearchQuery ] = useState<string>("")
+  const { data, error, isLoading } = useMovieSearch(searchQuery);
+
+
+  const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  }
 
   return (
     <search>
@@ -27,6 +36,8 @@ export const SearchForm = () => {
                 <InputGroupInput
                   id="global-search"
                   placeholder="Search for a movie, series, or actor"
+                  value={searchQuery}
+                  onChange={searchHandler}
                 />
                 <InputGroupAddon>
                   <Search />
