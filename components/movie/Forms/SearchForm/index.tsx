@@ -41,7 +41,9 @@ export const SearchForm = () => {
                 <InputGroupInput
                   id="global-search"
                   placeholder="Search for a movie, series, or actor"
+                  name="query"
                   value={searchQuery}
+                  type="search"
                   onChange={searchHandler}
                 />
                 <InputGroupAddon>
