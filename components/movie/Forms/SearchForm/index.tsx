@@ -1,3 +1,4 @@
+"use client"
 import { Field, FieldGroup, FieldLabel, FieldSet } from "@/components/ui/field";
 import {
   InputGroup,
@@ -12,9 +13,10 @@ import {
 import { Search } from "lucide-react";
 
 export const SearchForm = () => {
+
   return (
     <search>
-      <form className={searchInputGroup}>
+      <form action="/search" className={searchInputGroup}>
         <FieldGroup>
           <FieldSet>
             <Field>
