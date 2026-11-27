@@ -19,9 +19,9 @@ const useMovieSearch = (query: string) => {
         })
       : null
 
-  const { data, error, isLoading } = useSWR<SearchResult[], ApiError>(
+  const { data, error, isLoading } = useSWR<SearchResult, ApiError>(
     key,
-    (url: string) => internalFetcher<SearchResult[]>(url),
+    (url: string) => internalFetcher<SearchResult>(url),
     { keepPreviousData: true, revalidateOnFocus: false }
   )
 
