@@ -54,9 +54,9 @@ export interface SearchResult {
 
 export interface SearchResultItem {
   id: number;
-  mediaType: "movie" | "tv";
+  media_type: "movie" | "tv";
   title: string;
-  originalTitle: string; // drop this if the UI never shows it
-  posterPath: string | null;
-  releaseDate: string | null; // release_date for movies, first_air_date for TV
+  original_title: string; // drop this if the UI never shows it
+  poster_path: string | null;
+  release_date: string | null; // release_date for movies, first_air_date for TV
 }
