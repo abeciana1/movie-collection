@@ -1,10 +1,6 @@
+import "server-only"
 import { createApiClient } from "./api-client";
 import { getApiExternalBaseUrl } from "@/lib/api-external/constants"
-
-export const TMDB = createApiClient(
-  () => getApiExternalBaseUrl("tmdb"),
-  () => ({ Authorization: `Bearer ${getTmdbToken()}` })
-)
 
 export const getTmdbToken = (): string => {
   const token = process.env.TMDB_API_KEY;
@@ -15,3 +11,8 @@ export const getTmdbToken = (): string => {
   }
   return token;
 }
+
+export const TMDB = createApiClient(
+  () => getApiExternalBaseUrl("tmdb"),
+  () => ({ Authorization: `Bearer ${getTmdbToken()}` })
+)
