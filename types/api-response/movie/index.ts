@@ -60,3 +60,10 @@ export interface SearchResultItem {
   poster_path: string | null;
   release_date: string | null; // release_date for movies, first_air_date for TV
 }
+
+export interface TmdbMultiResponse {
+  page: number;
+  total_pages: number;
+  total_results: number;
+  results: SearchResultItem[];
+}
