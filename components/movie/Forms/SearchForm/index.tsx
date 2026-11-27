@@ -81,7 +81,7 @@ export const SearchFormResults = ({
   searchQuery
 }: SearchFormResultsProps) => {
   return (
-    <Popover>
+    <Popover open={openResults}>
       <PopoverContent>
         <PopoverHeader>
           <PopoverTitle>Search Results for: {searchQuery}</PopoverTitle>
