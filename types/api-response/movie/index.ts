@@ -24,6 +24,10 @@ export interface ApiMovieAttributes extends Pick<MovieT,
     watchlistItems: ApiWatchlistItemAttributes[];
   }
 
+export interface ApiMovieResponse {
+  mediaType: "tv" | "movie" | "person";
+}
+
 export interface TMDBMovie {
   title: string;
   originalTitle: string;
@@ -46,4 +50,13 @@ export interface SearchResult {
     movie?: TMDBMovie[];
     tv?: TMDBTV[];
   };
+}
+
+export interface SearchResultItem {
+  id: number;
+  mediaType: "movie" | "tv";
+  title: string;
+  originalTitle: string; // drop this if the UI never shows it
+  posterPath: string | null;
+  releaseDate: string | null; // release_date for movies, first_air_date for TV
 }
