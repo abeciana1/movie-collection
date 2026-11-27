@@ -49,7 +49,8 @@ export interface SearchResult {
   results: {
     movie?: TMDBMovie[];
     tv?: TMDBTV[];
-  };
+  },
+  joint: (TMDBMovie | TMDBTV)[];
 }
 
 export interface SearchResultItem {
