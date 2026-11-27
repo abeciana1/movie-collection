@@ -28,6 +28,7 @@ export interface TMDBMovie {
   title: string;
   originalTitle: string;
   posterPath: string;
+  releaseDate: string;
   // overview: string;
   // mediaType: string;
   // genreIds: number[];
@@ -37,6 +38,7 @@ export interface TMDBTV {
   title: string;
   originalTitle: string;
   posterPath: string;
+  firstAirDate: string;
 }
 
 export interface SearchResult {
