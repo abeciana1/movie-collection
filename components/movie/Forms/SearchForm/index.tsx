@@ -29,49 +29,55 @@ export const SearchForm = () => {
 
   const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
+    setOpenResults(true);
   }
 
   return (
-    <search>
-      <form action="/search" className={searchInputGroup}>
-        <FieldGroup>
-          <FieldSet>
-            <Field>
-              <FieldLabel htmlFor="global-search" className={searchLabel}>
-                Search for a movie, series, or actor
-              </FieldLabel>
-              <InputGroup className={searchInput}>
-                <InputGroupInput
-                  id="global-search"
-                  placeholder="Search for a movie, series, or actor"
-                  name="query"
-                  value={searchQuery}
-                  type="search"
-                  onChange={searchHandler}
-                />
-                <InputGroupAddon>
-                  <Search />
-                </InputGroupAddon>
-              </InputGroup>
-            </Field>
-          </FieldSet>
-        </FieldGroup>
-      </form>
-    </search>
+    <>
+      <search>
+        <form action="/search" className={searchInputGroup}>
+          <FieldGroup>
+            <FieldSet>
+              <Field>
+                <FieldLabel htmlFor="global-search" className={searchLabel}>
+                  Search for a movie, series, or actor
+                </FieldLabel>
+                <InputGroup className={searchInput}>
+                  <InputGroupInput
+                    id="global-search"
+                    placeholder="Search for a movie, series, or actor"
+                    name="query"
+                    value={searchQuery}
+                    type="search"
+                    onChange={searchHandler}
+                  />
+                  <InputGroupAddon>
+                    <Search />
+                  </InputGroupAddon>
+                </InputGroup>
+              </Field>
+            </FieldSet>
+          </FieldGroup>
+        </form>
+      </search>
+      <SearchFormResults
+        openResults={openResults}
+        results={data?.joint ?? []}
+        searchQuery={searchQuery}
+      />
+    </>
   );
 };
 
 interface SearchFormResultsProps {
-  resultsLength: number;
   openResults: boolean;
-  results: Pick<SearchResult, "joint">;
+  results: SearchResult["joint"];
   searchQuery: string;
 }
 
 export const SearchFormResults = ({
-  resultsLength,
-  // openResults,
-  // results,
+  openResults,
+  results,
   searchQuery
 }: SearchFormResultsProps) => {
   return (
@@ -79,7 +85,7 @@ export const SearchFormResults = ({
       <PopoverContent>
         <PopoverHeader>
           <PopoverTitle>Search Results for: {searchQuery}</PopoverTitle>
-          <p>{resultsLength} results found</p>
+          <p>{results.length} results found</p>
         </PopoverHeader>
       </PopoverContent>
     </Popover>
