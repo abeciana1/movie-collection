@@ -27,12 +27,21 @@ export interface ApiMovieAttributes extends Pick<MovieT,
 export interface TMDBMovie {
   title: string;
   originalTitle: string;
-  // overview: string;
   posterPath: string;
+  // overview: string;
   // mediaType: string;
   // genreIds: number[];
 }
 
+export interface TMDBTV {
+  title: string;
+  originalTitle: string;
+  posterPath: string;
+}
+
 export interface SearchResult {
-  results: TMDBMovie[];
+  results: {
+    movie?: TMDBMovie[];
+    tv?: TMDBTV[];
+  };
 }
