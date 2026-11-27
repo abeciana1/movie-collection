@@ -13,11 +13,16 @@ import {
 import { Search } from "lucide-react";
 import useMovieSearch from "@/hooks/movie/useMovieSearch"
 import { useState } from "react"
+import logger from "@/lib/helpers/logger"
 
 export const SearchForm = () => {
   const [ searchQuery, setSearchQuery ] = useState<string>("")
   const { data, error, isLoading } = useMovieSearch(searchQuery);
 
+  logger("log", "Search query:", searchQuery);
+  logger("log", "Search data:", data);
+  logger("log", "Search error:", error);
+  logger("log", "Search isLoading:", isLoading);
 
   const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
