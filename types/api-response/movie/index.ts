@@ -23,3 +23,16 @@ export interface ApiMovieAttributes extends Pick<MovieT,
   "title" | "posterPath" | "releaseYear" | "tmdbId" | "notes"> {
     watchlistItems: ApiWatchlistItemAttributes[];
   }
+
+export interface TMDBMovie {
+  title: string;
+  originalTitle: string;
+  // overview: string;
+  posterPath: string;
+  // mediaType: string;
+  // genreIds: number[];
+}
+
+export interface SearchResult {
+  results: TMDBMovie[];
+}
