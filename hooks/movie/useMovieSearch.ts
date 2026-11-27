@@ -4,7 +4,7 @@ import useDebounce from "@/hooks/useDebounce"
 import { API_INTERNAL, getApiInternalBaseUrl } from "@/lib/api-internal/constants"
 import { buildUrl } from "@/lib/helpers/api-client"
 import type { ApiError } from "@/lib/api-external/types"
-import { fetcher } from "@/lib/helpers/fetcher"
+import { internalFetcher } from "@/lib/helpers/fetcher"
 import type { SearchResult } from "@/types/api-response/movie"
 
 const MIN_QUERY_LENGTH = 2
@@ -21,7 +21,7 @@ const useMovieSearch = (query: string) => {
 
   const { data, error, isLoading } = useSWR<SearchResult[], ApiError>(
     key,
-    (url: string) => fetcher<SearchResult[]>(url),
+    (url: string) => internalFetcher<SearchResult[]>(url),
     { keepPreviousData: true, revalidateOnFocus: false }
   )
 
