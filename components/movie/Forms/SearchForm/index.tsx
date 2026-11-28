@@ -34,7 +34,7 @@ export const SearchForm = () => {
 
   return (
     <>
-      <search>
+      <search className="relative">
         <form action="/search" className={searchInputGroup}>
           <FieldGroup>
             <FieldSet>
@@ -84,7 +84,7 @@ export const SearchFormResults = ({
 }: SearchFormResultsProps) => {
   logger("log", "SearchFormResults results:", results);
   return (
-    <PopoverContent anchor={anchorRef} align="start" initialFocus={false} className="max-h-96 overflow-auto w-full max-w-xs">
+    <PopoverContent anchor={anchorRef} align="start" initialFocus={false} className="max-h-96 overflow-auto w-full">
       <PopoverHeader>
         <PopoverTitle>Search Results for: {searchQuery}</PopoverTitle>
         <p>{results.length} results found</p>
