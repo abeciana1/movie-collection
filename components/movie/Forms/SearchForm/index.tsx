@@ -60,11 +60,30 @@ export const SearchForm = () => {
           </FieldGroup>
         </form>
         <Popover open={searchQuery.length > 2}>
-          <SearchFormResults
-            results={data?.joint ?? []}
-            searchQuery={searchQuery}
-            anchorRef={anchorRef}
-          />
+          {data && (
+            <SearchFormResults
+              results={data?.joint ?? []}
+              searchQuery={searchQuery}
+              anchorRef={anchorRef}
+              status={"success"}
+            />
+          )}
+          {isLoading && (
+            <SearchFormResults
+              results={[]}
+              searchQuery={searchQuery}
+              anchorRef={anchorRef}
+              status={"loading"}
+            />
+          )}
+          {error && (
+            <SearchFormResults
+              results={[]}
+              searchQuery={searchQuery}
+              anchorRef={anchorRef}
+              status={"error"}
+            />
+          )}
         </Popover>
       </search>
     </>
@@ -75,20 +94,29 @@ interface SearchFormResultsProps {
   results: SearchResult["joint"];
   searchQuery: string;
   anchorRef: React.RefObject<HTMLDivElement | null>;
+  status: "loading" | "error" | "success";
 }
 
 export const SearchFormResults = ({
   results,
   searchQuery,
-  anchorRef
+  anchorRef,
+  status
 }: SearchFormResultsProps) => {
   logger("log", "SearchFormResults results:", results);
   return (
-    <PopoverContent anchor={anchorRef} align="start" initialFocus={false} className="max-h-96 overflow-auto w-full">
+    <PopoverContent anchor={anchorRef} align="start" initialFocus={false} className="max-h-96 overflow-auto w-(--anchor-width)">
       <PopoverHeader>
-        <PopoverTitle>Search Results for: {searchQuery}</PopoverTitle>
-        <p>{results.length} results found</p>
+        {status === "loading" && <p>Loading...</p>}
+        {status === "error" && <p>Error occurred while searching.</p>}
+        {status === "success" && (
+          <>
+            <PopoverTitle>Search Results for: {searchQuery}</PopoverTitle>
+            <p>{results.length} results found</p>
+          </>
+        )}
       </PopoverHeader>
+
       <ul className="space-y-4">
         {results.map((result) => (
           <li key={result.id}>
