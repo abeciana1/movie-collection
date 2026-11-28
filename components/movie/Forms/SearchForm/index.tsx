@@ -98,7 +98,6 @@ export const SearchFormResults = ({
   anchorRef,
   status
 }: SearchFormResultsProps) => {
-  logger("log", "SearchFormResults results:", results);
   return (
     <PopoverContent anchor={anchorRef} align="start" initialFocus={false} className="max-h-96 overflow-auto w-(--anchor-width)">
       <PopoverHeader>
