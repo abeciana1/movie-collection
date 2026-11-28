@@ -98,8 +98,8 @@ export function MobileNavigation () {
 
   return (
     <MotionConfig transition={transition}>
-      <div className='absolute inset-x-0 bottom-0 lg:hidden' ref={ref}>
-        <div className='h-full w-full border-t-2 border-t-foreground bg-background'>
+      <div className='fixed inset-x-0 bottom-0 lg:hidden z-[999999]' ref={ref}>
+        <div className='h-full w-full border-t-2 border-t-foreground bg-background relative z-[999999]'>
           <div className='overflow-hidden'>
             <AnimatePresence initial={false} mode='sync'>
               {isOpen ? (
