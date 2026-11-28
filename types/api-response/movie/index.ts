@@ -29,6 +29,7 @@ export interface ApiMovieResponse {
 }
 
 export interface TMDBMovie {
+  id: number;
   title: string;
   originalTitle: string;
   posterPath: string;
@@ -39,6 +40,7 @@ export interface TMDBMovie {
 }
 
 export interface TMDBTV {
+  id: number;
   title: string;
   originalTitle: string;
   posterPath: string;
