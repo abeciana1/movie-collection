@@ -16,6 +16,15 @@ const nextConfig: NextConfig = {
       expire: 86400, // 1 day
     },
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "media.themoviedb.org",
+        pathname: "/t/p/**",
+      }
+    ]
+  }
 };
 
 export default withSentryConfig(nextConfig, {
