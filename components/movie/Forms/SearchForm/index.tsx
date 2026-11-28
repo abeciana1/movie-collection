@@ -30,7 +30,6 @@ export const SearchForm = () => {
 
   const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
-    // setOpenResults(true);
   }
 
   return (
@@ -85,7 +84,7 @@ export const SearchFormResults = ({
 }: SearchFormResultsProps) => {
   logger("log", "SearchFormResults results:", results);
   return (
-    <PopoverContent anchor={anchorRef} align="start" initialFocus={false}>
+    <PopoverContent anchor={anchorRef} align="start" initialFocus={false} className="max-h-96 overflow-auto w-full max-w-xs">
       <PopoverHeader>
         <PopoverTitle>Search Results for: {searchQuery}</PopoverTitle>
         <p>{results.length} results found</p>
