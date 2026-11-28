@@ -60,14 +60,14 @@ export const SearchForm = () => {
             </FieldSet>
           </FieldGroup>
         </form>
+        <Popover open={searchQuery.length > 2}>
+          <SearchFormResults
+            results={data?.joint ?? []}
+            searchQuery={searchQuery}
+            anchorRef={anchorRef}
+          />
+        </Popover>
       </search>
-      <Popover open={searchQuery.length > 2}>
-        <SearchFormResults
-          results={data?.joint ?? []}
-          searchQuery={searchQuery}
-          anchorRef={anchorRef}
-        />
-      </Popover>
     </>
   );
 };
