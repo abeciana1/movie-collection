@@ -49,10 +49,10 @@ export interface TMDBTV {
 
 export interface SearchResult {
   results: {
-    movie?: TMDBMovie[];
-    tv?: TMDBTV[];
+    movie?: SearchResultItem[];
+    tv?: SearchResultItem[];
   },
-  joint: (TMDBMovie | TMDBTV)[];
+  joint: SearchResultItem[];
 }
 
 export interface SearchResultItem {
