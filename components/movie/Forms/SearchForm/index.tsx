@@ -23,11 +23,6 @@ export const SearchForm = () => {
   const anchorRef = useRef<HTMLDivElement>(null)
   const { data, error, isLoading } = useMovieSearch(searchQuery);
 
-  logger("log", "Search query:", searchQuery);
-  logger("log", "Search data:", data);
-  logger("log", "Search error:", error);
-  logger("log", "Search isLoading:", isLoading);
-
   const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   }
