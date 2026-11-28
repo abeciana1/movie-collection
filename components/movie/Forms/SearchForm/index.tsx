@@ -12,14 +12,14 @@ import {
 } from "./SearchFrom.variants";
 import { Search } from "lucide-react";
 import useMovieSearch from "@/hooks/movie/useMovieSearch"
-import { useState } from "react"
+import { useState, useRef } from "react"
 import logger from "@/lib/helpers/logger"
-import { Popover, PopoverContent, PopoverHeader, PopoverTitle } from "@/components/ui/popover"
+import { Popover, PopoverContent, PopoverHeader, PopoverTitle, PopoverTrigger } from "@/components/ui/popover"
 import type { SearchResult } from "@/types/api-response/movie"
 
 export const SearchForm = () => {
   const [ searchQuery, setSearchQuery ] = useState<string>("")
-  const [ openResults, setOpenResults ] = useState<boolean>(false);
+  const anchorRef = useRef<HTMLDivElement>(null)
   const { data, error, isLoading } = useMovieSearch(searchQuery);
 
   logger("log", "Search query:", searchQuery);
@@ -29,7 +29,7 @@ export const SearchForm = () => {
 
   const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
-    setOpenResults(true);
+    // setOpenResults(true);
   }
 
   return (
@@ -42,7 +42,7 @@ export const SearchForm = () => {
                 <FieldLabel htmlFor="global-search" className={searchLabel}>
                   Search for a movie, series, or actor
                 </FieldLabel>
-                <InputGroup className={searchInput}>
+                <InputGroup ref={anchorRef} className={searchInput}>
                   <InputGroupInput
                     id="global-search"
                     placeholder="Search for a movie, series, or actor"
@@ -60,34 +60,37 @@ export const SearchForm = () => {
           </FieldGroup>
         </form>
       </search>
-      <SearchFormResults
-        openResults={openResults}
-        results={data?.joint ?? []}
-        searchQuery={searchQuery}
-      />
+      <Popover open={searchQuery.length > 2}>
+        <SearchFormResults
+          results={data?.joint ?? []}
+          searchQuery={searchQuery}
+          anchorRef={anchorRef}
+        />
+      </Popover>
     </>
   );
 };
 
 interface SearchFormResultsProps {
-  openResults: boolean;
   results: SearchResult["joint"];
   searchQuery: string;
+  anchorRef: React.RefObject<HTMLDivElement | null>;
 }
 
 export const SearchFormResults = ({
-  openResults,
   results,
-  searchQuery
+  searchQuery,
+  anchorRef
 }: SearchFormResultsProps) => {
   return (
-    <Popover open={openResults}>
-      <PopoverContent>
-        <PopoverHeader>
-          <PopoverTitle>Search Results for: {searchQuery}</PopoverTitle>
-          <p>{results.length} results found</p>
-        </PopoverHeader>
-      </PopoverContent>
-    </Popover>
+    <PopoverContent anchor={anchorRef} align="start" initialFocus={false}>
+      <PopoverHeader>
+        <PopoverTitle>Search Results for: {searchQuery}</PopoverTitle>
+        <p>{results.length} results found</p>
+      </PopoverHeader>
+      {results.map((result) => (
+        <div key={result.id}>{result.title}</div>
+      ))}
+    </PopoverContent>
   )
 }
