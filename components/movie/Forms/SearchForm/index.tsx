@@ -14,8 +14,9 @@ import { Search } from "lucide-react";
 import useMovieSearch from "@/hooks/movie/useMovieSearch"
 import { useState, useRef } from "react"
 import logger from "@/lib/helpers/logger"
-import { Popover, PopoverContent, PopoverHeader, PopoverTitle, PopoverTrigger } from "@/components/ui/popover"
+import { Popover, PopoverContent, PopoverHeader, PopoverTitle } from "@/components/ui/popover"
 import type { SearchResult } from "@/types/api-response/movie"
+import { MovieDropdownItem } from "@/components/movie/Search/MovieDropdownItem"
 
 export const SearchForm = () => {
   const [ searchQuery, setSearchQuery ] = useState<string>("")
@@ -89,9 +90,16 @@ export const SearchFormResults = ({
         <PopoverTitle>Search Results for: {searchQuery}</PopoverTitle>
         <p>{results.length} results found</p>
       </PopoverHeader>
-      <ul>
+      <ul className="space-y-4">
         {results.map((result) => (
-          <li key={result.id}>{result.title}</li>
+          <li key={result.id}>
+            <MovieDropdownItem
+              id={result.id}
+              title={result.title}
+              poster_path={result.poster_path}
+              release_date={result.release_date}
+            />
+          </li>
         ))}
       </ul>
     </PopoverContent>
