@@ -82,15 +82,18 @@ export const SearchFormResults = ({
   searchQuery,
   anchorRef
 }: SearchFormResultsProps) => {
+  logger("log", "SearchFormResults results:", results);
   return (
     <PopoverContent anchor={anchorRef} align="start" initialFocus={false}>
       <PopoverHeader>
         <PopoverTitle>Search Results for: {searchQuery}</PopoverTitle>
         <p>{results.length} results found</p>
       </PopoverHeader>
-      {results.map((result) => (
-        <div key={result.id}>{result.title}</div>
-      ))}
+      <ul>
+        {results.map((result) => (
+          <li key={result.id}>{result.title}</li>
+        ))}
+      </ul>
     </PopoverContent>
   )
 }
