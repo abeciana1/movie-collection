@@ -55,6 +55,15 @@ const toSearchResultItem = (raw: TmdbResult): SearchResultItem | null => {
   }
 };
 
+export interface CompiledSearchResultItem {
+  id: number;
+  media_type: string;
+  title: string;
+  original_title: string;
+  poster_path: string;
+  release_date: string
+}
+
 export const searchTMDB = async (query: string, page = 1) => {
   const data = await TMDB.get<TmdbMultiResponse>(
     API_EXTERNAL.tmdb.endpoints.search.multi,
